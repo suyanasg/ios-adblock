@@ -1,5 +1,5 @@
 #!name=去广告 · 完整版 + 外链域名集
-#!desc=完整版 + DOMAIN-SET 外链，规则随小火箭「自动更新」刷新，无需重导模块。已内置 15 条护栏（推送/登录/证书域放行），避免外链误伤。规则 2139 条 + 外链 1 个 / MITM 20 域。
+#!desc=完整版 + DOMAIN-SET 外链，规则随小火箭「自动更新」刷新，无需重导模块。已内置 15 条护栏（推送/登录/证书域放行），避免外链误伤。规则 2139 条 + 外链 1 个 / MITM 18 域。
 #!author=seagull
 #!category=Adblock
 
@@ -2174,13 +2174,12 @@ DOMAIN-SET,https://anti-ad.net/domains.txt,REJECT
 ^https?:\/\/www\.xiaohongshu\.com\/api\/sns\/v\d+\/splash reject
 ^https?:\/\/c\.tieba\.baidu\.com\/c\/f\/splash reject
 ^https?:\/\/[\w.-]+\/(ad|ads|advert|advertisement)\/(config|list|info|splash|startup) reject
-^https?:\/\/lf\d?-cdn-tos\.bytescm\.com\/obj\/static\/ad\/ reject
 ^https?:\/\/sf3-be-pack\.pglstatp-toutiao\.com\/obj\/ad-app-package\/ reject
 ^https?:\/\/sf3-fe-tos\.pglstatp-toutiao\.com\/obj\/ad-pattern\/ reject
 
 [Script]
-AdClean = type=http-response,pattern=^https?:\/\/(api\.bilibili\.com|api\.weibo\.cn|api\.zhihu\.com|app\.bilibili\.com|c\.tieba\.baidu\.com|edith\.xiaohongshu\.com|interface\.music\.163\.com|m\.weibo\.cn|music\.163\.com|www\.xiaohongshu\.com|www\.zhihu\.com)\/,requires-body=1,max-size=0,timeout=15,script-path=https://gist.githubusercontent.com/suyanasg/115df6b1947d22f7d356f594f0ce1223/raw/adclean.js
-SplashClean = type=http-response,pattern=^https?:\/\/(ads\.kugou\.com|ads\.kuwo\.cn|interface\.music\.163\.com|m\.kugou\.com|m\.kuwo\.cn|m\.music\.163\.com|music\.163\.com|u\.y\.qq\.com|u6\.y\.qq\.com)\/,requires-body=1,max-size=0,timeout=15,script-path=https://gist.githubusercontent.com/suyanasg/115df6b1947d22f7d356f594f0ce1223/raw/splash.js
+AdClean = type=http-response,pattern=^https?:\/\/(api\.bilibili\.com|api\.weibo\.cn|api\.zhihu\.com|app\.bilibili\.com|c\.tieba\.baidu\.com|edith\.xiaohongshu\.com|interface\.music\.163\.com|m\.weibo\.cn|music\.163\.com|www\.xiaohongshu\.com|www\.zhihu\.com)\/,requires-body=1,max-size=1048576,timeout=8,script-path=https://gist.githubusercontent.com/suyanasg/115df6b1947d22f7d356f594f0ce1223/raw/adclean.js
+SplashClean = type=http-response,pattern=^https?:\/\/(ads\.kugou\.com|ads\.kuwo\.cn|interface\.music\.163\.com|m\.kugou\.com|m\.kuwo\.cn|m\.music\.163\.com|music\.163\.com|u\.y\.qq\.com|u6\.y\.qq\.com)\/,requires-body=1,max-size=1048576,timeout=8,script-path=https://gist.githubusercontent.com/suyanasg/115df6b1947d22f7d356f594f0ce1223/raw/splash.js
 
 [MITM]
-hostname = %APPEND% ads.kugou.com, ads.kuwo.cn, api.bilibili.com, api.weibo.cn, api.zhihu.com, app.bilibili.com, c.tieba.baidu.com, edith.xiaohongshu.com, interface.music.163.com, lf1-cdn-tos.bytescm.com, lf3-cdn-tos.bytescm.com, m.kugou.com, m.kuwo.cn, m.music.163.com, m.weibo.cn, music.163.com, u.y.qq.com, u6.y.qq.com, www.xiaohongshu.com, www.zhihu.com
+hostname = %APPEND% ads.kugou.com, ads.kuwo.cn, api.bilibili.com, api.weibo.cn, api.zhihu.com, app.bilibili.com, c.tieba.baidu.com, edith.xiaohongshu.com, interface.music.163.com, m.kugou.com, m.kuwo.cn, m.music.163.com, m.weibo.cn, music.163.com, u.y.qq.com, u6.y.qq.com, www.xiaohongshu.com, www.zhihu.com

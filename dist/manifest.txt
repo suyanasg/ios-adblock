@@ -1,5 +1,4 @@
 {
-  "built_at": "2026-11-01 12:28:11",
   "with_aggressive": false,
   "with_risk": false,
   "auto_lists": [
@@ -9,8 +8,13 @@
   "guard_rules": 15,
   "guard_conflicts": [],
   "pruned_subdomains": 4,
-  "rewrite_rules": 14,
-  "mitm_hosts": 20,
+  "rewrite_rules": 13,
+  "mitm_mode": "lean",
+  "mitm_hosts": 18,
+  "mitm_dropped": [
+    "lf1-cdn-tos.bytescm.com",
+    "lf3-cdn-tos.bytescm.com"
+  ],
   "scripts": [
     "AdClean",
     "SplashClean"
@@ -26,8 +30,8 @@
   ],
   "sizes": {
     "adblock-lite.module": 79238,
-    "adblock-pro.module": 81265,
-    "adblock-pro-plus.module": 81988,
+    "adblock-pro.module": 81159,
+    "adblock-pro-plus.module": 81882,
     "adblock.list": 64153,
     "adclean.js": 7982,
     "splash.js": 7857
