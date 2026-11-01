@@ -25,7 +25,6 @@ import sys
 import time
 import urllib.error
 import urllib.request
-from datetime import datetime
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 SRC = os.path.join(ROOT, "src")
@@ -53,6 +52,38 @@ SCRIPTS = [
     ("AdClean", "adclean.js", "mitm.txt"),
     ("SplashClean", "splash.js", "mitm-splash.txt"),
 ]
+
+# ------------------------------------------------------------
+# MITM 流量分级
+# ------------------------------------------------------------
+# 每个 MITM 域都是全量解密：连接要走一次中间人握手，HTTP/2 被降级，
+# 图片多的域尤其伤。这里按「解密这域能得到什么」分三级：
+#
+#   heavy  图片/视频 CDN。解密它只为了按路径拦一小段广告素材，
+#          代价是整域所有图都过一遍 CPU 解密。—— lean 模式必删。
+#   mid    信息流接口。响应大、频次高，但脚本能真删广告卡片。
+#   light  纯接口域，响应只有几 KB。留着几乎不花钱。
+#
+# lean 模式删 heavy；off 模式全删（脚本一并停用，退化成纯规则）。
+HEAVY_MITM = {
+    "lf1-cdn-tos.bytescm.com",
+    "lf3-cdn-tos.bytescm.com",
+}
+
+# 依赖 heavy 域才能生效的 URL Rewrite（正则里点名了这些域）。
+# MITM 去掉后它们永远匹配不到，留着只是白占匹配槽位，一起删。
+# 注意：rewrite 里的正则是转义过的（bytescm\.com），比较前要先还原。
+HEAVY_REWRITE_HINTS = ("bytescm.com",)
+
+
+def rewrite_uses_heavy(pattern):
+    plain = pattern.replace("\\", "")
+    return any(h in plain for h in HEAVY_REWRITE_HINTS)
+
+# 脚本读 body 的上限。小火箭的 max-size=0 表示「不限」，
+# 意味着几 MB 的响应也会整块读进 JS 上下文再判断——这是纯浪费：
+# 广告配置接口没有超过 1 MB 的，超了基本都是正常业务数据。
+SCRIPT_MAX_SIZE = 1024 * 1024
 
 
 
@@ -351,6 +382,10 @@ def main():
                     help="不编 auto.list（sync.py 抓来的自动增长规则）")
     ap.add_argument("--with-auto-extra", action="store_true",
                     help="把 auto-extra.list 也编进去（广告位子域，多源认可但无语义）")
+    ap.add_argument("--mitm-mode", choices=["full", "lean", "off"], default="lean",
+                    help="MITM 解密强度：lean=去掉大流量 CDN（默认，日常几乎不掉功能）；"
+                         "full=全部 20 域（最全最慢）；"
+                         "off=完全不开 MITM，脚本停用，只剩域名规则 + URL Rewrite")
     args = ap.parse_args()
 
     if args.no_upstream:
@@ -395,15 +430,27 @@ def main():
 
     # mitm-extra.txt 只进全局 [MITM]，不加进任何脚本的 pattern：
     # 它是给 rewrite.list 的路径级 reject 提供解密条件的（比如字节 CDN）。
-    mitm = sorted(set(load_mitm("mitm.txt")
-                      + load_mitm("mitm-splash.txt")
-                      + load_mitm("mitm-extra.txt")))
+    mitm_all = sorted(set(load_mitm("mitm.txt")
+                          + load_mitm("mitm-splash.txt")
+                          + load_mitm("mitm-extra.txt")))
+    mitm = list(mitm_all)
+    dropped_mitm = []
+    if args.mitm_mode == "off":
+        dropped_mitm = list(mitm)
+        mitm = []
+    elif args.mitm_mode == "lean":
+        dropped_mitm = [h for h in mitm if h in HEAVY_MITM]
+        mitm = [h for h in mitm if h not in HEAVY_MITM]
+        if dropped_mitm:
+            rewrites = [(p, a) for p, a in rewrites if not rewrite_uses_heavy(p)]
+
+    use_script = bool(mitm)  # 没有 MITM 就没有明文 body，脚本纯属白挂
 
     guard, bad_guard = load_guard()
     # 护栏只在 plus 里生效；没挂外链或显式 --no-guard 时它不起作用，也就不该报冲突
     conflict = guard_conflicts(guard, rules) if (guard and domain_sets and not args.no_guard) else []
 
-    if not mitm:
+    if not mitm and args.mitm_mode != "off":
         print("[FAIL] MITM 域名为空")
         return 1
 
@@ -440,10 +487,13 @@ def main():
     script_lines = []
     script_urls = {}
     for name, filename, mitm_src in SCRIPTS:
-        hosts = sorted(set(load_mitm(mitm_src)))
+        # 只保留实际进了 [MITM] 的域：lean 模式剪掉的域名不能留在 pattern 里，
+        # 否则脚本会对着一条永远不会解密的连接等 body，白挂一个超时。
+        hosts = sorted(set(load_mitm(mitm_src)) & set(mitm))
         if not hosts:
-            print("[FAIL] 脚本 %s 没有关联 MITM 域名" % name)
-            return 1
+            print("  SKIP %-12s 对应域名已被 --mitm-mode %s 全部剪掉"
+                  % (name, args.mitm_mode))
+            continue
         if filename == "adclean.js":
             # --script-url 就是 adclean.js 的完整地址，不要再推导
             url = args.script_url
@@ -453,11 +503,16 @@ def main():
             url = url_for_script(args.script_url, filename)
         script_urls[name] = url
         script_lines.append(
-            "{name} = type=http-response,pattern={pat},requires-body=1,max-size=0,timeout=15,script-path={url}".format(
-                name=name, pat=script_pattern(hosts), url=url))
+            "{name} = type=http-response,pattern={pat},requires-body=1,"
+            "max-size={ms},timeout=8,script-path={url}".format(
+                name=name, pat=script_pattern(hosts), url=url, ms=SCRIPT_MAX_SIZE))
+    use_script = use_script and bool(script_lines)
 
     # ---------- 3. 模块生成 ----------
-    def module_text(name, desc, extra_rules=(), guard_rules=(), with_script=True):
+    def module_text(name, desc, extra_rules=(), guard_rules=(), with_script=True,
+                    with_rewrite=None):
+        if with_rewrite is None:
+            with_rewrite = with_script
         out = ["#!name=" + name, "#!desc=" + desc,
                "#!author=seagull", "#!category=Adblock", "", "[Rule]"]
         # 护栏必须排在最前：小火箭规则自上而下匹配，首个命中生效
@@ -467,10 +522,13 @@ def main():
             out.append("")
         out.append(build_rule_section(rules))
         out.extend(extra_rules)
-        if with_script:
+        # URL Rewrite 的 reject 在 TLS 握手前就掐断，不需要 MITM，
+        # 所以 --mitm-mode off 时这段照样生效，只是脚本那两段去掉。
+        if with_rewrite and rw_lines:
             out.append("")
             out.append("[URL Rewrite]")
             out.append(rw_lines)
+        if with_script and script_lines:
             out.append("")
             out.append("[Script]")
             out.extend(script_lines)
@@ -490,7 +548,8 @@ def main():
     pro_text = module_text(
         "去广告 · 完整版",
         "规则拦截 + 开屏接口 reject + JSON 广告清洗。需开启 HTTPS 解密并安装证书。规则 {n} 条 / MITM {m} 域。".format(
-            n=len(rules), m=len(mitm)))
+            n=len(rules), m=len(mitm)),
+        with_script=use_script, with_rewrite=True)
     with open(os.path.join(DIST, "adblock-pro.module"), "w", encoding="utf-8", newline="\n") as f:
         f.write(pro_text)
 
@@ -505,7 +564,7 @@ def main():
             "已内置 {g} 条护栏（推送/登录/证书域放行），避免外链误伤。"
             "规则 {n} 条 + 外链 {k} 个 / MITM {m} 域。".format(
                 g=len(use_guard), n=len(rules), k=len(extra), m=len(mitm)),
-            extra_rules=extra, guard_rules=use_guard)
+            extra_rules=extra, guard_rules=use_guard, with_script=use_script, with_rewrite=True)
         with open(os.path.join(DIST, "adblock-pro-plus.module"), "w", encoding="utf-8", newline="\n") as f:
             f.write(plus_text)
 
@@ -519,8 +578,9 @@ def main():
             f.write(js)
 
     # ---------- 5. 报告 ----------
+    # 不写构建时间：manifest 进版本控制，带时间戳等于每天强制一个空 commit。
+    # 想看构建时间就看 git log 或者 dist 文件的 mtime。
     report = {
-        "built_at": datetime.now().strftime("%Y-%m-%d %H:%M:%S"),
         "with_aggressive": args.with_aggressive,
         "with_risk": args.with_risk,
         "auto_lists": [os.path.basename(p) for p in auto_used],
@@ -529,8 +589,10 @@ def main():
         "guard_conflicts": [{"guard": g, "blocked": b} for g, b in conflict],
         "pruned_subdomains": len(dropped),
         "rewrite_rules": len(rewrites),
+        "mitm_mode": args.mitm_mode,
         "mitm_hosts": len(mitm),
-        "scripts": [s[0] for s in SCRIPTS],
+        "mitm_dropped": dropped_mitm,
+        "scripts": [s[0] for s in SCRIPTS if s[0] in script_urls],
         "script_url": args.script_url,
         "script_urls": script_urls,
         "script_url_is_local": is_local_url(args.script_url),
@@ -553,7 +615,12 @@ def main():
         " + ".join(os.path.basename(p) for p in auto_used) if auto_used
         else "未启用（先 python sync.py）"))
     print("  URL Rewrite   : %d 条" % len(rewrites))
-    print("  MITM 域名     : %d 个" % len(mitm))
+    print("  MITM 模式     : %s" % args.mitm_mode)
+    print("  MITM 域名     : %d 个%s" % (
+        len(mitm), "  (剪掉 %d 个: %s)" % (len(dropped_mitm), ", ".join(dropped_mitm))
+        if dropped_mitm else ""))
+    print("  脚本          : %s" % (
+        ", ".join(script_urls.keys()) if script_urls else "未挂载（无 MITM 域）"))
     print("  激进区        : %s" % ("已启用" if args.with_aggressive else "未启用"))
     print("  风险区        : %s" % ("已启用" if args.with_risk else "未启用（推送/风控/登录域名未拦）"))
     print("  护栏规则      : %d 条%s" % (len(guard), "（--no-guard 已关闭）" if args.no_guard else ""))
