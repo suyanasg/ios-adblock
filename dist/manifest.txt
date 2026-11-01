@@ -1,11 +1,11 @@
 {
-  "built_at": "2026-11-01 20:27:18",
+  "built_at": "2026-11-01 12:28:11",
   "with_aggressive": false,
   "with_risk": false,
   "auto_lists": [
     "auto.list"
   ],
-  "rules": 2138,
+  "rules": 2139,
   "guard_rules": 15,
   "guard_conflicts": [],
   "pruned_subdomains": 4,
@@ -25,10 +25,10 @@
     "https://anti-ad.net/domains.txt"
   ],
   "sizes": {
-    "adblock-lite.module": 79198,
-    "adblock-pro.module": 81225,
-    "adblock-pro-plus.module": 81948,
-    "adblock.list": 64120,
+    "adblock-lite.module": 79238,
+    "adblock-pro.module": 81265,
+    "adblock-pro-plus.module": 81988,
+    "adblock.list": 64153,
     "adclean.js": 7982,
     "splash.js": 7857
   }

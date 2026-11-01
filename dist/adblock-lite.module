@@ -1,5 +1,5 @@
 #!name=去广告 · 纯规则版
-#!desc=只做域名层拦截，无 MITM、无需证书、不碰 App 数据。共 2138 条规则。
+#!desc=只做域名层拦截，无 MITM、无需证书、不碰 App 数据。共 2139 条规则。
 #!author=seagull
 #!category=Adblock
 
@@ -252,6 +252,7 @@ DOMAIN-SUFFIX,ad.kataweb.it,REJECT
 DOMAIN-SUFFIX,ad.keenspace.com,REJECT
 DOMAIN-SUFFIX,ad.khan.co.kr,REJECT
 DOMAIN-SUFFIX,ad.kimcartoon.si,REJECT
+DOMAIN-SUFFIX,ad.kinozal.website,REJECT
 DOMAIN-SUFFIX,ad.kissanime.ac,REJECT
 DOMAIN-SUFFIX,ad.kissanime.co,REJECT
 DOMAIN-SUFFIX,ad.kissanime.sx,REJECT
