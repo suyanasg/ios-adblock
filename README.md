@@ -314,35 +314,44 @@ RULE-SET,https://raw.githubusercontent.com/deezertidal/shadowrocket-rules/main/r
 
 小火箭：`配置 > 模块 > 右上角 + > 填地址 > 下载`。之后这个地址就是订阅，不用再手动重导。
 
-### 本机每天推一次
+### 自动更新：GitHub Actions（当前方案）
 
-`daily-build.ps1` 在构建完之后会 `git add -A && commit && push`。
-token 从项目根目录的 `.git-token` 读，那个文件已经在 `.gitignore` 里：
+`.github/workflows/daily.yml` 每天 UTC 20:00（北京 04:00）跑：
+
+```
+抓上游 → 过滤 → 构建 → 单测 → 有变化才 commit
+```
+
+commit 之后 `raw.githubusercontent.com` 上的模块就是最新的，手机订阅地址自动拿到新版。
+
+踩过的两个坑，都已经堵住：
+
+- **空 commit**：`dist/manifest.txt` 里的 `built_at` 是构建时间，
+  `src/rules/auto.stats.json` 记的是上游抓取量（每天波动几条），
+  这两个天天变但不代表规则真变了。前者在 workflow 里过滤掉，
+  后者直接移出版本控制（进 `.gitignore`）。列表头也不写生成时间和抓取量了。
+- **排队撞车**：手动触发和定时任务同时排队时，后跑的那个 checkout 的是触发
+  那一刻的旧 SHA，push 必被拒。所以 `checkout` 显式指定 `ref: main`，
+  推失败还会 rebase 重试三次。提交前还会扫一遍冲突标记，有就不提交。
+
+### 本机任务（可选，默认不推送）
+
+`daily-build.ps1` 现在**只构建不推送**，推送归 Actions 管：
+
+```powershell
+powershell -ExecutionPolicy Bypass -File daily-build.ps1 -Install
+```
+
+`-Uninstall` 卸载，不带参数立刻跑一次，`-NoSync` 跳过抓取只重建。
+要手动推（比如 Actions 挂了）加 `-Push`，token 从 `.git-token` 读：
 
 ```powershell
 echo ghp_xxxxxxxx > .git-token
+powershell -ExecutionPolicy Bypass -File daily-build.ps1 -Push
 ```
 
-classic PAT，**只要 `repo`**。推完 raw 地址立刻可用（GitHub CDN 有 1-2 分钟缓存，不是没生效）。
-
-token 别提交，也别打印到日志里。`.git-token` 被删掉就自动跳过推送，脚本不会报错。
-
-### GitHub Actions 版本
-
-`.github/workflows/daily.yml` 已经写好，但推这个文件需要 token 额外勾 **`workflow`** scope ——
-GitHub 不允许只有 `repo` 的 token 创建或修改 workflow。
-
-补了 scope 之后：
-
-```bash
-git add .github/workflows/daily.yml
-git commit -m "ci: 每日构建"
-git push
-```
-
-Actions 每天 UTC 20:00（北京 04:00）跑。它的价值是不依赖这台电脑开机；
-本机推送则是不依赖 GitHub Actions 额度。两条路结果一样，选一条就行。
-**别两个同时开** —— 会互相抢着 commit，白白多出冲突。
+classic PAT，勾 `repo` 就够。推完 raw 地址立刻可用（CDN 有 1-2 分钟缓存，不是没生效）。
+`.git-token` 已 gitignore，删掉就自动跳过推送。两边同时推会抢 ref，所以默认关了。
 
 ## 托管到公网（Gist）
 
@@ -553,14 +562,15 @@ python build.py           # auto.list 默认就编进三个模块
 
 两条路，按有没有 GitHub 仓库选。
 
-**A. 本机计划任务（不需要仓库）**
+**A. 本机计划任务（只产 dist/，默认不推送）**
 
 ```powershell
 powershell -ExecutionPolicy Bypass -File daily-build.ps1 -Install
 ```
 
 注册每天 04:00 跑一次：抓上游 → 构建 → 写 `logs/daily.log`。
-`-Uninstall` 卸载，不带参数就是立刻跑一次，`-NoSync` 跳过抓取只重建。
+`-Uninstall` 卸载，不带参数就是立刻跑一次，`-NoSync` 跳过抓取只重建，
+`-Push` 才会 git push（默认不推，避免和 Actions 抢 ref）。
 
 构建完 `dist/` 就是最新的。手机还是得重导一次 —— 除非配了 Gist：
 
@@ -579,9 +589,9 @@ https://gist.githubusercontent.com/<user>/<gist-id>/raw/adblock-pro-plus.module
 `deploy-gist.py --update <gist-id>` 是原地更新，raw 地址不变。**别建新 Gist** ——
 建新的会让手机上的地址指向旧内容，等于永远拿不到更新。
 
-**B. GitHub Actions（不依赖本机开机）**
+**B. GitHub Actions（当前在用）**
 
-仓库根目录已经有 `.github/workflows/daily.yml`，推上去就生效：
+仓库根目录的 `.github/workflows/daily.yml` 已经在跑：
 
 - 每天 UTC 20:00（北京 04:00）跑
 - 抓规则 → 构建 → 跑单测 → 有变化才 commit
