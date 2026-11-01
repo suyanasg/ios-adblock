@@ -1,0 +1,5 @@
+# 统一换行，避免 Windows 上 commit 进去一堆 CRLF 噪音
+* text=auto eol=lf
+
+# PowerShell 脚本保持 CRLF + BOM，否则 5.1 会把中文读成乱码
+*.ps1 text eol=crlf
