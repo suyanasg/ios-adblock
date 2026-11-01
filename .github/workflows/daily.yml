@@ -76,6 +76,14 @@ jobs:
 
       - name: 提交变更
         run: |
+          # 兜底：工作区残留冲突标记就直接失败。宁可这轮不提交，
+          # 也不能把 <<<<<<< HEAD 这种东西推到 main 上（吃过一次亏）。
+          if grep -rq '^<<<<<<< ' --include='*' . --exclude-dir=.git; then
+            echo "!! 工作区有冲突标记残留，拒绝提交："
+            grep -rln '^<<<<<<< ' --include='*' . --exclude-dir=.git
+            exit 1
+          fi
+
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
