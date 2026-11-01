@@ -18,6 +18,7 @@ import base64
 import json
 import os
 import sys
+import time
 import urllib.error
 import urllib.request
 
@@ -25,6 +26,9 @@ ROOT = os.path.dirname(os.path.abspath(__file__))
 API = "https://api.github.com"
 REPO = "suyanasg/ios-adblock"
 BRANCH = "main"
+
+# 全局禁用代理：直接连 api.github.com
+OPENER = urllib.request.build_opener(urllib.request.ProxyHandler({}))
 
 # 这些不进仓库（跟 .gitignore 保持一致）
 SKIP_DIRS = {".git", "__pycache__", ".cache", "logs", "node_modules"}
@@ -43,7 +47,7 @@ def token():
     raise SystemExit("[FAIL] 没找到 token：q")
 
 
-def call(method, path, data=None, tok=None):
+def call(method, path, data=None, tok=None, retries=8):
     url = path if path.startswith("http") else API + path
     body = None
     headers = {
@@ -54,14 +58,32 @@ def call(method, path, data=None, tok=None):
     if data is not None:
         body = json.dumps(data).encode("utf-8")
         headers["Content-Type"] = "application/json"
-    req = urllib.request.Request(url, data=body, headers=headers, method=method)
-    try:
-        with urllib.request.urlopen(req, timeout=30) as r:
-            raw = r.read()
-            return r.status, (json.loads(raw) if raw else {})
-    except urllib.error.HTTPError as e:
-        detail = e.read().decode("utf-8", "replace")
-        raise SystemExit("[FAIL] %s %s -> HTTP %s\n%s" % (method, path, e.code, detail[:600]))
+
+    last = None
+    for i in range(retries):
+        req = urllib.request.Request(url, data=body, headers=headers, method=method)
+        try:
+            # 本机系统代理经常挂（127.0.0.1:xxx 连不上），api.github.com 直连更快更稳。
+            # 这里显式禁用代理，不受 HTTP_PROXY 环境变量影响。
+            with OPENER.open(req, timeout=30) as r:
+                raw = r.read()
+                return r.status, (json.loads(raw) if raw else {})
+        except urllib.error.HTTPError as e:
+            detail = e.read().decode("utf-8", "replace")
+            # 5xx 才值得重试，4xx 是逻辑错误，重试没意义
+            if e.code >= 500 and i + 1 < retries:
+                last = "HTTP %s" % e.code
+                time.sleep(2 + i * 2)
+                continue
+            raise SystemExit("[FAIL] %s %s -> HTTP %s\n%s" % (method, path, e.code, detail[:600]))
+        except Exception as e:
+            # 这台机器到 github 的连接时通时断（SSL EOF / reset / timeout），
+            # 重试几次基本都能过。
+            last = "%s: %s" % (type(e).__name__, e)
+            if i + 1 < retries:
+                time.sleep(2 + i * 2)
+                continue
+    raise SystemExit("[FAIL] %s %s 连续 %d 次失败：%s" % (method, path, retries, last))
 
 
 def walk_files():
