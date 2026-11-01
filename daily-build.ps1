@@ -13,7 +13,10 @@ param(
     [switch]$Install,
     [switch]$Uninstall,
     [switch]$NoSync,
-    [string]$ScriptUrl = ""
+    [string]$ScriptUrl = "",
+    # 默认只构建不推送：GitHub Actions 每天 04:00 已经在推，
+    # 两边同时推会抢 ref，白白多出冲突。需要手动推时才加 -Push。
+    [switch]$Push
 )
 
 $ErrorActionPreference = 'Stop'
@@ -157,7 +160,7 @@ if (-not (Test-Path $gitExe)) {
     if ($gc) { $gitExe = $gc.Source } else { $gitExe = '' }
 }
 
-if ((Test-Path $tokenFile) -and $gitExe -ne '') {
+if ((Test-Path $tokenFile) -and $gitExe -ne '' -and $Push) {
     $ghToken = (Get-Content $tokenFile -Raw -Encoding utf8).Trim()
     if ($ghToken -ne '') {
         Write-Log "推送到 GitHub ..."
@@ -188,7 +191,7 @@ if ((Test-Path $tokenFile) -and $gitExe -ne '') {
         $ErrorActionPreference = $prevEap
     }
 } else {
-    Write-Log "没有 .git-token，跳过 GitHub 推送（模块只更新本地 dist/）"
+    Write-Log "只构建不推送（推送由 GitHub Actions 每天 04:00 做；要手动推加 -Push）"
 }
 
 Pop-Location
