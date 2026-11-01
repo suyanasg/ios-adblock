@@ -1,0 +1,201 @@
+# ============================================================
+# core.list  —  安全区：广告/统计/归因 SDK 域名
+# 这些域名只做广告投放、埋点上报、归因统计，屏蔽后不影响 App 正常功能
+# 格式：DOMAIN-SUFFIX,example.com   （build.py 会补齐 ,REJECT）
+# ============================================================
+
+# ---------- Google / Meta / 国际广告联盟 ----------
+DOMAIN-SUFFIX,doubleclick.net
+DOMAIN-SUFFIX,googleadservices.com
+DOMAIN-SUFFIX,googlesyndication.com
+DOMAIN-SUFFIX,googletagservices.com
+DOMAIN-SUFFIX,googletagmanager.com
+DOMAIN-SUFFIX,adservice.google.com
+DOMAIN-SUFFIX,ads.google.com
+DOMAIN-SUFFIX,admob.com
+DOMAIN-SUFFIX,app-measurement.com
+DOMAIN-SUFFIX,an.facebook.com
+DOMAIN-SUFFIX,ads.linkedin.com
+DOMAIN-SUFFIX,ads.twitter.com
+DOMAIN-SUFFIX,ads.youtube.com
+DOMAIN-SUFFIX,amazon-adsystem.com
+DOMAIN-SUFFIX,adsrvr.org
+DOMAIN-SUFFIX,adnxs.com
+DOMAIN-SUFFIX,adnxs-simple.com
+DOMAIN-SUFFIX,criteo.com
+DOMAIN-SUFFIX,criteo.net
+DOMAIN-SUFFIX,taboola.com
+DOMAIN-SUFFIX,outbrain.com
+DOMAIN-SUFFIX,scorecardresearch.com
+DOMAIN-SUFFIX,moatads.com
+DOMAIN-SUFFIX,adsafeprotected.com
+DOMAIN-SUFFIX,doubleverify.com
+DOMAIN-SUFFIX,adsymptotic.com
+DOMAIN-SUFFIX,demdex.net
+DOMAIN-SUFFIX,omtrdc.net
+DOMAIN-SUFFIX,everesttech.net
+DOMAIN-SUFFIX,bluekai.com
+DOMAIN-SUFFIX,rubiconproject.com
+DOMAIN-SUFFIX,pubmatic.com
+DOMAIN-SUFFIX,openx.net
+DOMAIN-SUFFIX,indexexchange.com
+DOMAIN-SUFFIX,360yield.com
+DOMAIN-SUFFIX,smartadserver.com
+DOMAIN-SUFFIX,adform.net
+DOMAIN-SUFFIX,serving-sys.com
+DOMAIN-SUFFIX,flashtalking.com
+DOMAIN-SUFFIX,spotxchange.com
+DOMAIN-SUFFIX,teads.tv
+DOMAIN-SUFFIX,sharethrough.com
+DOMAIN-SUFFIX,yieldmo.com
+DOMAIN-SUFFIX,ads.yahoo.com
+DOMAIN-SUFFIX,analytics.yahoo.com
+DOMAIN-SUFFIX,adkernel.com
+DOMAIN-SUFFIX,adpone.com
+DOMAIN-SUFFIX,smartclip.net
+
+# ---------- 移动广告 SDK（出海 / 国内均常见） ----------
+DOMAIN-SUFFIX,applovin.com
+DOMAIN-SUFFIX,unityads.unity3d.com
+DOMAIN-SUFFIX,vungle.com
+DOMAIN-SUFFIX,chartboost.com
+DOMAIN-SUFFIX,adcolony.com
+DOMAIN-SUFFIX,ironsrc.com
+DOMAIN-SUFFIX,ironsource.mobi
+DOMAIN-SUFFIX,supersonicads.com
+DOMAIN-SUFFIX,mintegral.com
+DOMAIN-SUFFIX,inmobi.com
+DOMAIN-SUFFIX,startapp.com
+DOMAIN-SUFFIX,mopub.com
+DOMAIN-SUFFIX,heyzap.com
+DOMAIN-SUFFIX,fyber.com
+DOMAIN-SUFFIX,smaato.net
+DOMAIN-SUFFIX,liftoff.io
+# unity.com 已挪到 risk.list：那是 Unity 官网和资源商店，不只跑广告
+
+# ---------- 归因 / 埋点 / 分析 ----------
+DOMAIN-SUFFIX,google-analytics.com
+DOMAIN-SUFFIX,analytics.google.com
+DOMAIN-SUFFIX,crashlytics.com
+DOMAIN-SUFFIX,firebase-settings.crashlytics.com
+DOMAIN-SUFFIX,appsflyer.com
+DOMAIN-SUFFIX,adjust.com
+# branch.io 已挪到 risk.list：深度链接域名，分享/邀请码跳转依赖它
+DOMAIN-SUFFIX,kochava.com
+DOMAIN-SUFFIX,singular.net
+DOMAIN-SUFFIX,tenjin.io
+DOMAIN-SUFFIX,amplitude.com
+DOMAIN-SUFFIX,mixpanel.com
+DOMAIN-SUFFIX,segment.com
+DOMAIN-SUFFIX,segment.io
+DOMAIN-SUFFIX,braze.com
+DOMAIN-SUFFIX,appboy.com
+DOMAIN-SUFFIX,clarity.ms
+DOMAIN-SUFFIX,hotjar.com
+DOMAIN-SUFFIX,hotjar.io
+DOMAIN-SUFFIX,mouseflow.com
+DOMAIN-SUFFIX,statcounter.com
+DOMAIN-SUFFIX,histats.com
+DOMAIN-SUFFIX,newrelic.com
+DOMAIN-SUFFIX,bugsnag.com
+
+# ---------- 友盟 / 个推 / 极光 / Mob ----------
+# 个推、极光、Mob 已挪到 risk.list：它们是推送通道和第三方登录，
+# 杀掉会让 App 收不到通知 / 微信登录失败
+DOMAIN-SUFFIX,umeng.com
+DOMAIN-SUFFIX,umeng.co
+DOMAIN-SUFFIX,umengcloud.com
+DOMAIN-SUFFIX,umengcloud.net
+DOMAIN-SUFFIX,cnzz.com
+DOMAIN-SUFFIX,cnzz.net
+DOMAIN-SUFFIX,talkingdata.com
+DOMAIN-SUFFIX,talkingdata.net
+DOMAIN-SUFFIX,growingio.com
+DOMAIN-SUFFIX,sensorsdata.cn
+DOMAIN-SUFFIX,sensorsdata.com
+DOMAIN-SUFFIX,shareinstall.com
+
+# ---------- 阿里 / 腾讯 / 百度 / 字节 广告与统计 ----------
+DOMAIN-SUFFIX,tanx.com
+DOMAIN-SUFFIX,alimama.com
+DOMAIN-SUFFIX,mmstat.com
+DOMAIN-SUFFIX,simba.taobao.com
+DOMAIN-SUFFIX,gdt.qq.com
+DOMAIN-SUFFIX,e.qq.com
+DOMAIN-SUFFIX,pingfore.qq.com
+DOMAIN-SUFFIX,beacon.qq.com
+DOMAIN-SUFFIX,mta.qq.com
+DOMAIN-SUFFIX,pos.baidu.com
+DOMAIN-SUFFIX,cpro.baidu.com
+DOMAIN-SUFFIX,cbjs.baidu.com
+DOMAIN-SUFFIX,mobads.baidu.com
+DOMAIN-SUFFIX,adm.baidu.com
+DOMAIN-SUFFIX,union.baidu.com
+DOMAIN-SUFFIX,afd.baidu.com
+DOMAIN-SUFFIX,pangolin-sdk-toutiao.com
+DOMAIN-SUFFIX,pangolin-sdk-toutiao-b.com
+DOMAIN-SUFFIX,pglstatp-toutiao.com
+DOMAIN-SUFFIX,ad.zijieapi.com
+
+# ---------- 手机厂商广告 / 遥测 ----------
+DOMAIN-SUFFIX,mvm.360.cn
+DOMAIN-SUFFIX,tracking.miui.com
+DOMAIN-SUFFIX,data.mistat.xiaomi.com
+DOMAIN-SUFFIX,metok.xiaomi.com
+DOMAIN-SUFFIX,metrics1.data.hicloud.com
+DOMAIN-SUFFIX,metrics2.data.hicloud.com
+DOMAIN-SUFFIX,metrics5.data.hicloud.com
+
+# ---------- 视频 / 社交 App 广告位 ----------
+DOMAIN-SUFFIX,cm.bilibili.com
+DOMAIN-SUFFIX,data.bilibili.com
+DOMAIN-SUFFIX,ssp.weibo.com
+DOMAIN-SUFFIX,ad.weibo.com
+DOMAIN-SUFFIX,atm.youku.com
+DOMAIN-SUFFIX,valf.atm.youku.com
+DOMAIN-SUFFIX,acs.youku.com
+DOMAIN-SUFFIX,t7z.cupid.iqiyi.com
+
+# ---------- 国内第三方监测 ----------
+DOMAIN-SUFFIX,admaster.com.cn
+DOMAIN-SUFFIX,miaozhen.com
+DOMAIN-SUFFIX,irs01.com
+DOMAIN-SUFFIX,irs01.net
+DOMAIN-SUFFIX,gridsum.com
+DOMAIN-SUFFIX,rtbasia.com
+
+# ---------- 音乐 App 广告域 ----------
+# ads.* / ad.* 是行业惯例命名，命中率高；带 ? 的是推导値，看日志确认
+DOMAIN-SUFFIX,ads.kugou.com
+DOMAIN-SUFFIX,ad.kugou.com
+DOMAIN-SUFFIX,ads.kuwo.cn
+DOMAIN-SUFFIX,ad.kuwo.cn
+DOMAIN-SUFFIX,ads.y.qq.com
+DOMAIN-SUFFIX,ads6.y.qq.com
+DOMAIN-SUFFIX,mam.netease.com
+DOMAIN-SUFFIX,adsmusic.163.com
+
+# ---------- 反爬 / 指纹（常拖慢首屏） ----------
+DOMAIN-SUFFIX,fpjs.baidu.com
+# 同盾系已挪到 risk.list：风控域名，杀掉可能导致登录/支付提示网络异常
+
+# ---------- 各 App 广告投放接口 ----------
+# 逐个 DNS 验过存在才收进来；解析失败的臆造域名一律不收，白占内存
+DOMAIN-SUFFIX,ad.toutiao.com
+DOMAIN-SUFFIX,ad.e.kuaishou.com
+DOMAIN-SUFFIX,atanx.alicdn.com
+DOMAIN-SUFFIX,adash.m.taobao.com
+DOMAIN-SUFFIX,adsmind.gdtimg.com
+DOMAIN-SUFFIX,ad.qq.com
+DOMAIN-SUFFIX,ad.jd.com
+DOMAIN-SUFFIX,ad.meituan.com
+DOMAIN-SUFFIX,ad.api.3g.youku.com
+DOMAIN-SUFFIX,ad.bilibili.com
+DOMAIN-SUFFIX,ad.xiaohongshu.com
+DOMAIN-SUFFIX,mobads-logs.baidu.com
+DOMAIN-SUFFIX,ad.sina.com.cn
+DOMAIN-SUFFIX,ad.doubanio.com
+DOMAIN-SUFFIX,ads.tiktok.com
+DOMAIN-SUFFIX,analytics.tiktok.com
+DOMAIN-SUFFIX,ads.facebook.com
+DOMAIN-SUFFIX,adservice.google.com.hk

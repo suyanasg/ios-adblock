@@ -1,0 +1,35 @@
+{
+  "built_at": "2026-11-01 08:55:49",
+  "with_aggressive": false,
+  "with_risk": false,
+  "auto_lists": [
+    "auto.list"
+  ],
+  "rules": 2132,
+  "guard_rules": 15,
+  "guard_conflicts": [],
+  "pruned_subdomains": 4,
+  "rewrite_rules": 11,
+  "mitm_hosts": 18,
+  "scripts": [
+    "AdClean",
+    "SplashClean"
+  ],
+  "script_url": "https://gist.githubusercontent.com/suyanasg/115df6b1947d22f7d356f594f0ce1223/raw/adclean.js",
+  "script_urls": {
+    "AdClean": "https://gist.githubusercontent.com/suyanasg/115df6b1947d22f7d356f594f0ce1223/raw/adclean.js",
+    "SplashClean": "https://gist.githubusercontent.com/suyanasg/115df6b1947d22f7d356f594f0ce1223/raw/splash.js"
+  },
+  "script_url_is_local": false,
+  "domain_sets": [
+    "https://anti-ad.net/domains.txt"
+  ],
+  "sizes": {
+    "adblock-lite.module": 78967,
+    "adblock-pro.module": 80729,
+    "adblock-pro-plus.module": 81452,
+    "adblock.list": 63931,
+    "adclean.js": 7982,
+    "splash.js": 7857
+  }
+}

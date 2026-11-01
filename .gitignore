@@ -1,0 +1,15 @@
+# 本地缓存的上游规则文件（sync.py --offline 用，随时可删）
+.cache/
+
+# 每日构建日志
+logs/
+
+# Python
+__pycache__/
+*.pyc
+
+# 编辑器 / 系统
+.vscode/
+.idea/
+Thumbs.db
+desktop.ini

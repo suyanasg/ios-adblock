@@ -1,0 +1,39 @@
+# ============================================================
+# risk.list  —  有副作用的规则，默认不启用
+# ------------------------------------------------------------
+# 这些域名确实在跑广告/统计，但同时承担别的功能。
+# 杀掉之后可能出现：
+#   - 收不到 App 推送通知（个推/极光）
+#   - 微信/QQ 第三方登录失败（Mob ShareSDK）
+#   - 登录、下单、支付提示"网络异常"（同盾风控）
+#   - 分享链接、邀请码打不开（branch 深度链接）
+#   - Unity 官网 / Hub / 资源商店打不开
+#
+# 用法：python build.py --with-risk
+# 建议一次只加一类，观察两三天再决定留不留。
+# ============================================================
+
+# ---------- 推送通道 ----------
+# 国内 App 的推送基本走这三家，杀了一个 App 就"静默"了
+DOMAIN-SUFFIX,getui.com              # 个推
+DOMAIN-SUFFIX,getui.net
+DOMAIN-SUFFIX,igexin.com             # 个推旧域
+DOMAIN-SUFFIX,jpush.cn               # 极光推送
+DOMAIN-SUFFIX,jiguang.cn
+
+# ---------- 第三方登录 / 分享 SDK ----------
+DOMAIN-SUFFIX,mob.com                # MobTech ShareSDK，微信/QQ 登录要它
+
+# ---------- 风控 / 设备指纹 ----------
+# 部分银行、电商、出行 App 会拿它做设备校验，断了会直接拦请求
+DOMAIN-SUFFIX,tongdun.cn
+DOMAIN-SUFFIX,cap.tongdun.cn
+DOMAIN-SUFFIX,fraudmetrix.cn
+
+# ---------- 深度链接 ----------
+DOMAIN-SUFFIX,branch.io              # 分享链接、邀请码、免安装跳转
+
+# ---------- 已删除 ----------
+# unity.com 不在这份名单里，任何档位都不该杀。
+# 那是 Unity 官网 / Hub / 资源商店，跟广告没关系。
+# 真正的广告 SDK 是 unityads.unity3d.com，已经在 core.list 里。

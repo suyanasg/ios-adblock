@@ -1,0 +1,28 @@
+# ============================================================
+# mitm.txt  —  需要解密的域名（脚本才能读到明文 body）
+# 原则：只列「必须改 body」的接口域名，一张图都不多开
+# 漏了会失效，多了会拖慢并提高证书风险
+# ============================================================
+
+# B 站
+app.bilibili.com
+api.bilibili.com
+
+# 微博
+api.weibo.cn
+m.weibo.cn
+
+# 知乎
+api.zhihu.com
+www.zhihu.com
+
+# 小红书
+www.xiaohongshu.com
+edith.xiaohongshu.com
+
+# 贴吧
+c.tieba.baidu.com
+
+# 网易云音乐
+interface.music.163.com
+music.163.com

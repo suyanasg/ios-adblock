@@ -1,0 +1,59 @@
+# ============================================================
+# guard.list  —  护栏：必须排在所有 REJECT 之前
+# ------------------------------------------------------------
+# 背景：外链域名集（anti-AD 6.7 万条）里有 80 多个域名，杀掉之后
+# 不是"去广告"，而是直接打断功能。这些必须在 REJECT 之前放行。
+#
+# 小火箭的规则自上而下匹配，首个命中的生效。所以这组规则必须
+# 写在 [Rule] 的最前面，DOMAIN-SET 的阴影才盖不到它们。
+#
+# 只放"杀掉会直接报错"的，不放"杀掉只是少功能"的。
+# 统计、归因、崩溃上报一律不放行——那是去广告该杀的。
+# ============================================================
+
+# ---------- 证书基础设施 ----------
+# CRL 是证书吊销列表。断了不一定立刻报错，但证书校验超时会让
+# HTTPS 连接卡住几秒。同一代理下的 Windows / Office 设备会中招。
+DOMAIN,crl.microsoft.com,DIRECT
+
+# ---------- 企业登录 ----------
+# Azure AD / Office 365 的 Security Token Service
+DOMAIN-SUFFIX,sts.microsoft.com,DIRECT
+
+# ---------- 运营商一键登录 ----------
+# 中国移动统一认证。Android 上"本机号码一键登录"全靠这三个域，
+# 断了会卡在登录页转圈。
+DOMAIN-SUFFIX,cmpassport.com,DIRECT
+
+# ---------- 视频站登录 ----------
+DOMAIN,cm.passport.iqiyi.com,DIRECT
+
+# ---------- Apple 支付安全指标 ----------
+# Apple Pay / App Store 交易验证走它，断了可能支付失败
+DOMAIN,securemetrics.apple.com,DIRECT
+
+# ---------- 小程序容器 ----------
+DOMAIN,miniapp.bilibili.com,DIRECT
+
+# ---------- 网易易盾（验证码 / 设备指纹）----------
+# 大量 App 的登录、评论、下单前要过易盾。杀了会卡在验证码页，
+# 表现得像"网络异常"，很难联想到是去广告模块干的。
+DOMAIN,fp-upload.dun.163.com,DIRECT
+DOMAIN,ye.dun.163yun.com,DIRECT
+
+# ---------- 推送通道 ----------
+# 国内 Android 推送基本被这几家垄断。杀了一个 App 就彻底静默。
+# iOS 走 APNs 不受影响，但同一代理下其它设备会受影响。
+DOMAIN-SUFFIX,getui.com,DIRECT
+DOMAIN-SUFFIX,getui.net,DIRECT
+DOMAIN-SUFFIX,igexin.com,DIRECT
+DOMAIN-SUFFIX,jpush.cn,DIRECT
+DOMAIN-SUFFIX,jiguang.cn,DIRECT
+
+# ---------- 第三方登录 / 验证 ----------
+# MobTech ShareSDK，微信 / QQ / 微博登录要它
+DOMAIN-SUFFIX,mob.com,DIRECT
+
+# ---------- 深度链接 ----------
+# 分享链接、邀请码、免安装跳转
+DOMAIN-SUFFIX,branch.io,DIRECT

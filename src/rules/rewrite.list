@@ -1,0 +1,42 @@
+# ============================================================
+# rewrite.list  —  URL Rewrite 拒绝项
+# 格式：<正则> <动作>     动作固定为 reject
+# 用途：钉死「启动图 / 开屏广告 / 日志上报」这类已知接口，比 JSON 清洗更稳
+# ============================================================
+
+# B 站 开屏 / 启动图
+^https?:\/\/app\.bilibili\.com\/x\/v2\/splash reject
+^https?:\/\/api\.bilibili\.com\/x\/v2\/splash reject
+^https?:\/\/app\.bilibili\.com\/x\/v2\/splash\/(list|show) reject
+
+# 网易云音乐 行为日志（不影响播放）
+^https?:\/\/clientlog\d*\.music\.163\.com\/ reject
+^https?:\/\/apm\.music\.163\.com\/ reject
+
+# 微博 广告位接口
+^https?:\/\/api\.weibo\.cn\/2\/interface\/sdk\/ad reject
+
+# 知乎 开屏广告
+^https?:\/\/api\.zhihu\.com\/api\/v4\/splash reject
+^https?:\/\/www\.zhihu\.com\/api\/v4\/splash reject
+
+# 小红书 开屏
+^https?:\/\/www\.xiaohongshu\.com\/api\/sns\/v\d+\/splash reject
+
+# 贴吧 开屏 / 插屏
+^https?:\/\/c\.tieba\.baidu\.com\/c\/f\/splash reject
+
+# 通用：广告位探测
+^https?:\/\/[\w.-]+\/(ad|ads|advert|advertisement)\/(config|list|info|splash|startup) reject
+
+# ============================================================
+# 音乐 App 开屏「硬 reject」——默认全部注释
+# ------------------------------------------------------------
+# 比脚本更彻底：请求直接死掉，App 拿不到任何广告素材。
+# 代价：部分版本会白屏/转圈 1-3 秒才进主页，个别版本直接卡住。
+# 想用就把对应行前面的 # 删掉，一次只开一个 App，验证完再加下一个。
+# ============================================================
+# ^https?:\/\/[\w.-]*kugou\.(com|cn)\/.*(splash|startup|launch|open_?screen|boot_?ad) reject
+# ^https?:\/\/[\w.-]*kuwo\.(com|cn)\/.*(splash|startup|launch|open_?screen|boot_?ad) reject
+# ^https?:\/\/(u6?\.)?y\.qq\.com\/.*(splash|startup|launch|open_?screen|boot_?ad) reject
+# ^https?:\/\/(interface\.)?music\.163\.com\/.*(splash|startup|launch|open_?screen) reject

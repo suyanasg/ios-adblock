@@ -1,0 +1,39 @@
+# ============================================================
+# aggressive.list  —  激进区：会命中"广告与业务共用的域名/路径"
+# 默认【不启用】。启用方式见 README「三档强度」
+# 每一条都可能让某个 App 的登录/图片/推送异常，出问题先从这里回滚
+# ============================================================
+
+# 腾讯广点通登录态混用，禁了可能影响 QQ/微信 内部分享页统计
+DOMAIN-SUFFIX,gdt.qq.com
+
+# 字节穿山甲会与抖音内嵌 SDK 共用
+DOMAIN-SUFFIX,ad.toutiao.com
+DOMAIN-SUFFIX,ad.about.bytedance.com
+
+# 阿里妈妈与淘宝客链接、部分商品图混用
+DOMAIN-SUFFIX,re.m.taobao.com
+DOMAIN-SUFFIX,adash.m.taobao.com
+DOMAIN-SUFFIX,adashbc.ut.taobao.com
+
+# Adobe DTM：很多正规站点用它加载统计脚本，屏蔽后部分网页白屏
+DOMAIN-SUFFIX,adobedtm.com
+
+# 微博图片 CDN 与广告图同域
+DOMAIN-SUFFIX,u1.img.mobile.sina.cn
+
+# B 站稿件封面与广告图同域
+DOMAIN-SUFFIX,i0.hdslb.com
+DOMAIN-SUFFIX,i1.hdslb.com
+DOMAIN-SUFFIX,i2.hdslb.com
+
+# 抖音/头条 内容接口，按域名杀会把推荐流也杀空
+DOMAIN-SUFFIX,aweme.snssdk.com
+DOMAIN-SUFFIX,api.amemv.com
+
+# 通用：按关键词杀广告域名，误伤率最高
+DOMAIN-KEYWORD,adserver
+DOMAIN-KEYWORD,adservice
+DOMAIN-KEYWORD,doubleclick
+DOMAIN-SUFFIX,ad-cdn.com
+DOMAIN-SUFFIX,adcdn.com
