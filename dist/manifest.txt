@@ -1,5 +1,9 @@
 {
+<<<<<<< HEAD
   "built_at": "2026-11-01 01:17:58",
+=======
+  "built_at": "2026-11-01 09:18:54",
+>>>>>>> 66e9940 (fix(ci): 列表头不再写抓取量，stats 移出版本控制)
   "with_aggressive": false,
   "with_risk": false,
   "auto_lists": [

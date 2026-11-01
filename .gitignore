@@ -4,6 +4,10 @@
 # 每日构建日志
 logs/
 
+# sync.py 的抓取统计（上游每天都在动，这几个数字不该进版本控制，
+# 否则 CI 每天都会因此多一个空 commit）
+src/rules/auto.stats.json
+
 # Python
 __pycache__/
 *.pyc
