@@ -149,6 +149,48 @@ if ($token -and $gistId) {
     Write-Log "没配 GIST_TOKEN / GIST_ID，跳过 Gist。手机重导一次 dist/ 里的模块即可"
 }
 
+# 4. 推送到 GitHub（有 .git-token 才做）
+$tokenFile = Join-Path $Root '.git-token'
+$gitExe = 'C:\Users\Administrator\.workbuddy\binaries\PortableGit\versions\1.3.0\cmd\git.exe'
+if (-not (Test-Path $gitExe)) {
+    $gc = Get-Command git -ErrorAction SilentlyContinue
+    if ($gc) { $gitExe = $gc.Source } else { $gitExe = '' }
+}
+
+if ((Test-Path $tokenFile) -and $gitExe -ne '') {
+    $ghToken = (Get-Content $tokenFile -Raw -Encoding utf8).Trim()
+    if ($ghToken -ne '') {
+        Write-Log "推送到 GitHub ..."
+        # git 把进度写 stderr，PowerShell 会当 NativeCommandError 抛；
+        # 这段必须临时放开 Stop，不然一次正常推送就能把脚本打断。
+        $prevEap = $ErrorActionPreference
+        $ErrorActionPreference = 'Continue'
+
+        & $gitExe -C $Root add -A 2>&1 | Out-Null
+        $dirty = & $gitExe -C $Root status --porcelain
+        if ($dirty) {
+            & $gitExe -C $Root -c "user.name=suyanasg" `
+                -c "user.email=suyanasg@users.noreply.github.com" `
+                commit -q -m ("chore: 每日同步 " + (Get-Date -Format 'yyyy-MM-dd')) 2>&1 | Out-Null
+            $url = "https://x-access-token:$ghToken@github.com/suyanasg/ios-adblock.git"
+            $out = & $gitExe -C $Root -c "credential.helper=" push $url main 2>&1
+            $pushCode = $LASTEXITCODE
+            $out | Where-Object { "$_" -ne '' } | ForEach-Object { Write-Log "  $_" }
+            if ($pushCode -ne 0) {
+                Write-Log "!! 推送失败（退出码 $pushCode），多半是 token 过期，换一个写进 .git-token"
+            } else {
+                Write-Log "  已推送，raw 地址自动生效"
+            }
+        } else {
+            Write-Log "  规则没变化，不提交"
+        }
+
+        $ErrorActionPreference = $prevEap
+    }
+} else {
+    Write-Log "没有 .git-token，跳过 GitHub 推送（模块只更新本地 dist/）"
+}
+
 Pop-Location
 
 $size = (Get-ChildItem (Join-Path $Root 'dist') -Filter '*.module' |
