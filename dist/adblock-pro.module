@@ -1,5 +1,5 @@
 #!name=去广告 · 完整版
-#!desc=规则拦截 + 开屏接口 reject + JSON 广告清洗。需开启 HTTPS 解密并安装证书。规则 2132 条 / MITM 18 域。
+#!desc=规则拦截 + 开屏接口 reject + JSON 广告清洗。需开启 HTTPS 解密并安装证书。规则 2138 条 / MITM 20 域。
 #!author=seagull
 #!category=Adblock
 
@@ -1352,6 +1352,7 @@ DOMAIN-SUFFIX,adx.maplehaze.cn,REJECT
 DOMAIN-SUFFIX,adx.mocoplex.com,REJECT
 DOMAIN-SUFFIX,adx.naonmedia.net,REJECT
 DOMAIN-SUFFIX,adx.opera.com,REJECT
+DOMAIN-SUFFIX,adx.qq.com,REJECT
 DOMAIN-SUFFIX,adx.sogaha.cn,REJECT
 DOMAIN-SUFFIX,adx.vn,REJECT
 DOMAIN-SUFFIX,adx.xemvtv.net,REJECT
@@ -1519,6 +1520,8 @@ DOMAIN-SUFFIX,criteo.net,REJECT
 DOMAIN-SUFFIX,data.bilibili.com,REJECT
 DOMAIN-SUFFIX,data.mistat.xiaomi.com,REJECT
 DOMAIN-SUFFIX,demdex.net,REJECT
+DOMAIN-SUFFIX,dig.bdurl.net,REJECT
+DOMAIN-SUFFIX,dig.zjurl.cn,REJECT
 DOMAIN-SUFFIX,dmp.citynews.ovh,REJECT
 DOMAIN-SUFFIX,dmp.mall.tv,REJECT
 DOMAIN-SUFFIX,doubleclick.com,REJECT
@@ -1583,6 +1586,7 @@ DOMAIN-SUFFIX,kochava.com,REJECT
 DOMAIN-SUFFIX,layer-ad.de,REJECT
 DOMAIN-SUFFIX,layer-ads.de,REJECT
 DOMAIN-SUFFIX,liftoff.io,REJECT
+DOMAIN-SUFFIX,log5-applog.fqnovel.com,REJECT
 DOMAIN-SUFFIX,mam.netease.com,REJECT
 DOMAIN-SUFFIX,metok.xiaomi.com,REJECT
 DOMAIN-SUFFIX,metric.huya.com,REJECT
@@ -1678,6 +1682,7 @@ DOMAIN-SUFFIX,promo.yahoo.com,REJECT
 DOMAIN-SUFFIX,promos.bwin.it,REJECT
 DOMAIN-SUFFIX,promos.fling.com,REJECT
 DOMAIN-SUFFIX,pubmatic.com,REJECT
+DOMAIN-SUFFIX,rdelivery.qq.com,REJECT
 DOMAIN-SUFFIX,rtb.appbid.com,REJECT
 DOMAIN-SUFFIX,rtb.com.ru,REJECT
 DOMAIN-SUFFIX,rtb.dynotech.io,REJECT
@@ -1692,6 +1697,7 @@ DOMAIN-SUFFIX,rtb.videonow.ru,REJECT
 DOMAIN-SUFFIX,rtb.viewsense.ai,REJECT
 DOMAIN-SUFFIX,rtb.voltaxam.com,REJECT
 DOMAIN-SUFFIX,rtbasia.com,REJECT
+DOMAIN-SUFFIX,rtlog5-applog.fqnovel.com,REJECT
 DOMAIN-SUFFIX,rubiconproject.com,REJECT
 DOMAIN-SUFFIX,sc-analytics.appspot.com,REJECT
 DOMAIN-SUFFIX,scorecardresearch.com,REJECT
@@ -2149,10 +2155,13 @@ DOMAIN-SUFFIX,zion-telemetry.api.cnn.io,REJECT
 ^https?:\/\/www\.xiaohongshu\.com\/api\/sns\/v\d+\/splash reject
 ^https?:\/\/c\.tieba\.baidu\.com\/c\/f\/splash reject
 ^https?:\/\/[\w.-]+\/(ad|ads|advert|advertisement)\/(config|list|info|splash|startup) reject
+^https?:\/\/lf\d?-cdn-tos\.bytescm\.com\/obj\/static\/ad\/ reject
+^https?:\/\/sf3-be-pack\.pglstatp-toutiao\.com\/obj\/ad-app-package\/ reject
+^https?:\/\/sf3-fe-tos\.pglstatp-toutiao\.com\/obj\/ad-pattern\/ reject
 
 [Script]
 AdClean = type=http-response,pattern=^https?:\/\/(api\.bilibili\.com|api\.weibo\.cn|api\.zhihu\.com|app\.bilibili\.com|c\.tieba\.baidu\.com|edith\.xiaohongshu\.com|interface\.music\.163\.com|m\.weibo\.cn|music\.163\.com|www\.xiaohongshu\.com|www\.zhihu\.com)\/,requires-body=1,max-size=0,timeout=15,script-path=https://gist.githubusercontent.com/suyanasg/115df6b1947d22f7d356f594f0ce1223/raw/adclean.js
 SplashClean = type=http-response,pattern=^https?:\/\/(ads\.kugou\.com|ads\.kuwo\.cn|interface\.music\.163\.com|m\.kugou\.com|m\.kuwo\.cn|m\.music\.163\.com|music\.163\.com|u\.y\.qq\.com|u6\.y\.qq\.com)\/,requires-body=1,max-size=0,timeout=15,script-path=https://gist.githubusercontent.com/suyanasg/115df6b1947d22f7d356f594f0ce1223/raw/splash.js
 
 [MITM]
-hostname = %APPEND% ads.kugou.com, ads.kuwo.cn, api.bilibili.com, api.weibo.cn, api.zhihu.com, app.bilibili.com, c.tieba.baidu.com, edith.xiaohongshu.com, interface.music.163.com, m.kugou.com, m.kuwo.cn, m.music.163.com, m.weibo.cn, music.163.com, u.y.qq.com, u6.y.qq.com, www.xiaohongshu.com, www.zhihu.com
+hostname = %APPEND% ads.kugou.com, ads.kuwo.cn, api.bilibili.com, api.weibo.cn, api.zhihu.com, app.bilibili.com, c.tieba.baidu.com, edith.xiaohongshu.com, interface.music.163.com, lf1-cdn-tos.bytescm.com, lf3-cdn-tos.bytescm.com, m.kugou.com, m.kuwo.cn, m.music.163.com, m.weibo.cn, music.163.com, u.y.qq.com, u6.y.qq.com, www.xiaohongshu.com, www.zhihu.com

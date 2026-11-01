@@ -199,3 +199,16 @@ DOMAIN-SUFFIX,ads.tiktok.com
 DOMAIN-SUFFIX,analytics.tiktok.com
 DOMAIN-SUFFIX,ads.facebook.com
 DOMAIN-SUFFIX,adservice.google.com.hk
+
+# ---------- 番茄小说（字节）----------
+# 埋点和点击追踪域。拦了不影响阅读、听书、书架同步
+DOMAIN-SUFFIX,dig.bdurl.net
+DOMAIN-SUFFIX,dig.zjurl.cn
+DOMAIN-SUFFIX,log5-applog.fqnovel.com
+DOMAIN-SUFFIX,rtlog5-applog.fqnovel.com
+
+# ---------- QQ 阅读 ----------
+# adx = 腾讯广告交易平台，rdelivery = 阅读侧广告投放
+# 两个都不承载正文，正文走 book.qq.com
+DOMAIN-SUFFIX,adx.qq.com
+DOMAIN-SUFFIX,rdelivery.qq.com

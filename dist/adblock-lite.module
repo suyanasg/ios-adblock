@@ -1,5 +1,5 @@
 #!name=去广告 · 纯规则版
-#!desc=只做域名层拦截，无 MITM、无需证书、不碰 App 数据。共 2132 条规则。
+#!desc=只做域名层拦截，无 MITM、无需证书、不碰 App 数据。共 2138 条规则。
 #!author=seagull
 #!category=Adblock
 
@@ -1352,6 +1352,7 @@ DOMAIN-SUFFIX,adx.maplehaze.cn,REJECT
 DOMAIN-SUFFIX,adx.mocoplex.com,REJECT
 DOMAIN-SUFFIX,adx.naonmedia.net,REJECT
 DOMAIN-SUFFIX,adx.opera.com,REJECT
+DOMAIN-SUFFIX,adx.qq.com,REJECT
 DOMAIN-SUFFIX,adx.sogaha.cn,REJECT
 DOMAIN-SUFFIX,adx.vn,REJECT
 DOMAIN-SUFFIX,adx.xemvtv.net,REJECT
@@ -1519,6 +1520,8 @@ DOMAIN-SUFFIX,criteo.net,REJECT
 DOMAIN-SUFFIX,data.bilibili.com,REJECT
 DOMAIN-SUFFIX,data.mistat.xiaomi.com,REJECT
 DOMAIN-SUFFIX,demdex.net,REJECT
+DOMAIN-SUFFIX,dig.bdurl.net,REJECT
+DOMAIN-SUFFIX,dig.zjurl.cn,REJECT
 DOMAIN-SUFFIX,dmp.citynews.ovh,REJECT
 DOMAIN-SUFFIX,dmp.mall.tv,REJECT
 DOMAIN-SUFFIX,doubleclick.com,REJECT
@@ -1583,6 +1586,7 @@ DOMAIN-SUFFIX,kochava.com,REJECT
 DOMAIN-SUFFIX,layer-ad.de,REJECT
 DOMAIN-SUFFIX,layer-ads.de,REJECT
 DOMAIN-SUFFIX,liftoff.io,REJECT
+DOMAIN-SUFFIX,log5-applog.fqnovel.com,REJECT
 DOMAIN-SUFFIX,mam.netease.com,REJECT
 DOMAIN-SUFFIX,metok.xiaomi.com,REJECT
 DOMAIN-SUFFIX,metric.huya.com,REJECT
@@ -1678,6 +1682,7 @@ DOMAIN-SUFFIX,promo.yahoo.com,REJECT
 DOMAIN-SUFFIX,promos.bwin.it,REJECT
 DOMAIN-SUFFIX,promos.fling.com,REJECT
 DOMAIN-SUFFIX,pubmatic.com,REJECT
+DOMAIN-SUFFIX,rdelivery.qq.com,REJECT
 DOMAIN-SUFFIX,rtb.appbid.com,REJECT
 DOMAIN-SUFFIX,rtb.com.ru,REJECT
 DOMAIN-SUFFIX,rtb.dynotech.io,REJECT
@@ -1692,6 +1697,7 @@ DOMAIN-SUFFIX,rtb.videonow.ru,REJECT
 DOMAIN-SUFFIX,rtb.viewsense.ai,REJECT
 DOMAIN-SUFFIX,rtb.voltaxam.com,REJECT
 DOMAIN-SUFFIX,rtbasia.com,REJECT
+DOMAIN-SUFFIX,rtlog5-applog.fqnovel.com,REJECT
 DOMAIN-SUFFIX,rubiconproject.com,REJECT
 DOMAIN-SUFFIX,sc-analytics.appspot.com,REJECT
 DOMAIN-SUFFIX,scorecardresearch.com,REJECT

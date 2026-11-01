@@ -1,5 +1,5 @@
 # adblock.list — Shadowrocket / Surge RULE-SET
-# 条数: 2132
+# 条数: 2138
 DOMAIN-SUFFIX,360yield.com
 DOMAIN-SUFFIX,a-ads.com
 DOMAIN-SUFFIX,aa-metrics.beauty.hotpepper.jp
@@ -1348,6 +1348,7 @@ DOMAIN-SUFFIX,adx.maplehaze.cn
 DOMAIN-SUFFIX,adx.mocoplex.com
 DOMAIN-SUFFIX,adx.naonmedia.net
 DOMAIN-SUFFIX,adx.opera.com
+DOMAIN-SUFFIX,adx.qq.com
 DOMAIN-SUFFIX,adx.sogaha.cn
 DOMAIN-SUFFIX,adx.vn
 DOMAIN-SUFFIX,adx.xemvtv.net
@@ -1515,6 +1516,8 @@ DOMAIN-SUFFIX,criteo.net
 DOMAIN-SUFFIX,data.bilibili.com
 DOMAIN-SUFFIX,data.mistat.xiaomi.com
 DOMAIN-SUFFIX,demdex.net
+DOMAIN-SUFFIX,dig.bdurl.net
+DOMAIN-SUFFIX,dig.zjurl.cn
 DOMAIN-SUFFIX,dmp.citynews.ovh
 DOMAIN-SUFFIX,dmp.mall.tv
 DOMAIN-SUFFIX,doubleclick.com
@@ -1579,6 +1582,7 @@ DOMAIN-SUFFIX,kochava.com
 DOMAIN-SUFFIX,layer-ad.de
 DOMAIN-SUFFIX,layer-ads.de
 DOMAIN-SUFFIX,liftoff.io
+DOMAIN-SUFFIX,log5-applog.fqnovel.com
 DOMAIN-SUFFIX,mam.netease.com
 DOMAIN-SUFFIX,metok.xiaomi.com
 DOMAIN-SUFFIX,metric.huya.com
@@ -1674,6 +1678,7 @@ DOMAIN-SUFFIX,promo.yahoo.com
 DOMAIN-SUFFIX,promos.bwin.it
 DOMAIN-SUFFIX,promos.fling.com
 DOMAIN-SUFFIX,pubmatic.com
+DOMAIN-SUFFIX,rdelivery.qq.com
 DOMAIN-SUFFIX,rtb.appbid.com
 DOMAIN-SUFFIX,rtb.com.ru
 DOMAIN-SUFFIX,rtb.dynotech.io
@@ -1688,6 +1693,7 @@ DOMAIN-SUFFIX,rtb.videonow.ru
 DOMAIN-SUFFIX,rtb.viewsense.ai
 DOMAIN-SUFFIX,rtb.voltaxam.com
 DOMAIN-SUFFIX,rtbasia.com
+DOMAIN-SUFFIX,rtlog5-applog.fqnovel.com
 DOMAIN-SUFFIX,rubiconproject.com
 DOMAIN-SUFFIX,sc-analytics.appspot.com
 DOMAIN-SUFFIX,scorecardresearch.com

@@ -393,7 +393,11 @@ def main():
             continue
         rewrites.append((pattern, action))
 
-    mitm = sorted(set(load_mitm("mitm.txt") + load_mitm("mitm-splash.txt")))
+    # mitm-extra.txt 只进全局 [MITM]，不加进任何脚本的 pattern：
+    # 它是给 rewrite.list 的路径级 reject 提供解密条件的（比如字节 CDN）。
+    mitm = sorted(set(load_mitm("mitm.txt")
+                      + load_mitm("mitm-splash.txt")
+                      + load_mitm("mitm-extra.txt")))
 
     guard, bad_guard = load_guard()
     # 护栏只在 plus 里生效；没挂外链或显式 --no-guard 时它不起作用，也就不该报冲突

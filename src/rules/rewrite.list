@@ -30,6 +30,20 @@
 ^https?:\/\/[\w.-]+\/(ad|ads|advert|advertisement)\/(config|list|info|splash|startup) reject
 
 # ============================================================
+# 番茄小说 开屏素材
+# ------------------------------------------------------------
+# 穿山甲的开屏图/视频素材放在字节 CDN 的 /obj/static/ad/ 目录下。
+# lf1/lf3-cdn-tos.bytescm.com 同时也是书籍封面、头像的 CDN，
+# 所以只能按路径拦 —— 整域 REJECT 会把封面全干掉。
+# 需要 mitm-extra.txt 里开了对应 CDN 才会生效。
+# ============================================================
+^https?:\/\/lf\d?-cdn-tos\.bytescm\.com\/obj\/static\/ad\/ reject
+
+# 穿山甲素材打包域（整个 pglstatp 已在 core.list 域级拦死，这两条是兜底）
+^https?:\/\/sf3-be-pack\.pglstatp-toutiao\.com\/obj\/ad-app-package\/ reject
+^https?:\/\/sf3-fe-tos\.pglstatp-toutiao\.com\/obj\/ad-pattern\/ reject
+
+# ============================================================
 # 音乐 App 开屏「硬 reject」——默认全部注释
 # ------------------------------------------------------------
 # 比脚本更彻底：请求直接死掉，App 拿不到任何广告素材。
