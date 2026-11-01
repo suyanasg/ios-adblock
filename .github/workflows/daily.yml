@@ -33,6 +33,11 @@ jobs:
     steps:
       - name: 取代码
         uses: actions/checkout@v4
+        with:
+          # 排队时可能已有别的 run 推过 commit；拉最新而不是触发那一刻的 SHA，
+          # 否则会基于旧树提交，push 被拒（non-fast-forward）。
+          ref: main
+          fetch-depth: 0
 
       - name: 装 Python
         uses: actions/setup-python@v5
@@ -74,12 +79,35 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git add -A
+
           if git diff --cached --quiet; then
             echo "规则没变化，不提交"
-          else
-            git commit -m "chore: 每日同步 $(date -u +%Y-%m-%d) [skip ci]"
-            git push
+            exit 0
           fi
+
+          # dist/manifest.txt 里的 built_at 是构建时间，每次都不同。
+          # 只有它变而产物没变，说明上游规则没更新，没必要留 commit。
+          REAL=$(git diff --cached --name-only | grep -v '^dist/manifest\.txt$' || true)
+          if [ -z "$REAL" ]; then
+            echo "只有 manifest 时间戳变化，不提交"
+            git reset -q HEAD
+            exit 0
+          fi
+
+          git commit -m "chore: 每日同步 $(date -u +%Y-%m-%d) [skip ci]"
+
+          # 并发兜底：万一远端在这几秒内又被推过，rebase 后再试
+          for i in 1 2 3; do
+            if git push; then
+              echo "推送成功（第 $i 次）"
+              exit 0
+            fi
+            echo "推送被拒，第 $i 次重试：先拉远端"
+            git pull --rebase --autostash origin main || true
+          done
+
+          echo "连续 3 次推送失败"
+          exit 1
 
       - name: 更新 Gist 脚本（可选）
         env:
