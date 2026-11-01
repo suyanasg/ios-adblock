@@ -302,9 +302,53 @@ RULE-SET,https://raw.githubusercontent.com/deezertidal/shadowrocket-rules/main/r
 
 外部规则集挂了不影响本模块自己的 165 条。
 
+## 仓库订阅（推荐）
+
+模块已经推到 <https://github.com/suyanasg/ios-adblock>，raw 地址可以直接订阅：
+
+| 模块 | 订阅地址 |
+|---|---|
+| 纯规则 | `https://raw.githubusercontent.com/suyanasg/ios-adblock/main/dist/adblock-lite.module` |
+| 完整 | `https://raw.githubusercontent.com/suyanasg/ios-adblock/main/dist/adblock-pro.module` |
+| 外链 | `https://raw.githubusercontent.com/suyanasg/ios-adblock/main/dist/adblock-pro-plus.module` |
+
+小火箭：`配置 > 模块 > 右上角 + > 填地址 > 下载`。之后这个地址就是订阅，不用再手动重导。
+
+### 本机每天推一次
+
+`daily-build.ps1` 在构建完之后会 `git add -A && commit && push`。
+token 从项目根目录的 `.git-token` 读，那个文件已经在 `.gitignore` 里：
+
+```powershell
+echo ghp_xxxxxxxx > .git-token
+```
+
+classic PAT，**只要 `repo`**。推完 raw 地址立刻可用（GitHub CDN 有 1-2 分钟缓存，不是没生效）。
+
+token 别提交，也别打印到日志里。`.git-token` 被删掉就自动跳过推送，脚本不会报错。
+
+### GitHub Actions 版本
+
+`.github/workflows/daily.yml` 已经写好，但推这个文件需要 token 额外勾 **`workflow`** scope ——
+GitHub 不允许只有 `repo` 的 token 创建或修改 workflow。
+
+补了 scope 之后：
+
+```bash
+git add .github/workflows/daily.yml
+git commit -m "ci: 每日构建"
+git push
+```
+
+Actions 每天 UTC 20:00（北京 04:00）跑。它的价值是不依赖这台电脑开机；
+本机推送则是不依赖 GitHub Actions 额度。两条路结果一样，选一条就行。
+**别两个同时开** —— 会互相抢着 commit，白白多出冲突。
+
 ## 托管到公网（Gist）
 
 本机 `serve.py` 只是传输工具。要长期用完整版，脚本必须挂公网。
+
+
 
 **当前线上地址**（已生效，`dist/adblock-pro.module` 已指向这里）：
 
