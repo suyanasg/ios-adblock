@@ -1,5 +1,5 @@
 #!name=去广告 · 完整版
-#!desc=规则拦截 + 开屏接口 reject + JSON 广告清洗。需开启 HTTPS 解密并安装证书。规则 2139 条 / MITM 18 域。
+#!desc=规则拦截 + 开屏接口 reject + JSON 广告清洗。需开启 HTTPS 解密并安装证书。规则 2140 条 / MITM 18 域。
 #!author=seagull
 #!category=Adblock
 
@@ -1694,6 +1694,7 @@ DOMAIN-SUFFIX,rtb.klico.link,REJECT
 DOMAIN-SUFFIX,rtb.nefta.app,REJECT
 DOMAIN-SUFFIX,rtb.nowsrv.com,REJECT
 DOMAIN-SUFFIX,rtb.nuismak.com,REJECT
+DOMAIN-SUFFIX,rtb.prnteen.com,REJECT
 DOMAIN-SUFFIX,rtb.videonow.ru,REJECT
 DOMAIN-SUFFIX,rtb.viewsense.ai,REJECT
 DOMAIN-SUFFIX,rtb.voltaxam.com,REJECT
