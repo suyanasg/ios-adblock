@@ -1,5 +1,5 @@
 #!name=去广告 · 纯规则版
-#!desc=只做域名层拦截，无 MITM、无需证书、不碰 App 数据。共 2140 条规则。
+#!desc=只做域名层拦截，无 MITM、无需证书、不碰 App 数据。共 2141 条规则。
 #!author=seagull
 #!category=Adblock
 
@@ -1536,6 +1536,7 @@ DOMAIN-SUFFIX,dsp.aparat.com,REJECT
 DOMAIN-SUFFIX,dsp.applabs.live,REJECT
 DOMAIN-SUFFIX,dsp.colpirio.com,REJECT
 DOMAIN-SUFFIX,dsp.com,REJECT
+DOMAIN-SUFFIX,dsp.extvlabs.com,REJECT
 DOMAIN-SUFFIX,dsp.fcbox.com,REJECT
 DOMAIN-SUFFIX,dsp.feedad.com,REJECT
 DOMAIN-SUFFIX,dsp.foremedia.net,REJECT

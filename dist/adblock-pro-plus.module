@@ -1,5 +1,5 @@
 #!name=去广告 · 完整版 + 外链域名集
-#!desc=完整版 + DOMAIN-SET 外链，规则随小火箭「自动更新」刷新，无需重导模块。已内置 15 条护栏（推送/登录/证书域放行），避免外链误伤。规则 2140 条 + 外链 1 个 / MITM 18 域。
+#!desc=完整版 + DOMAIN-SET 外链，规则随小火箭「自动更新」刷新，无需重导模块。已内置 15 条护栏（推送/登录/证书域放行），避免外链误伤。规则 2141 条 + 外链 1 个 / MITM 18 域。
 #!author=seagull
 #!category=Adblock
 
@@ -1553,6 +1553,7 @@ DOMAIN-SUFFIX,dsp.aparat.com,REJECT
 DOMAIN-SUFFIX,dsp.applabs.live,REJECT
 DOMAIN-SUFFIX,dsp.colpirio.com,REJECT
 DOMAIN-SUFFIX,dsp.com,REJECT
+DOMAIN-SUFFIX,dsp.extvlabs.com,REJECT
 DOMAIN-SUFFIX,dsp.fcbox.com,REJECT
 DOMAIN-SUFFIX,dsp.feedad.com,REJECT
 DOMAIN-SUFFIX,dsp.foremedia.net,REJECT
