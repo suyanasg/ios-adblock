@@ -1545,6 +1545,7 @@ DOMAIN-SUFFIX,metrics.kgw.com
 DOMAIN-SUFFIX,metrics.lhj.com
 DOMAIN-SUFFIX,metrics.li
 DOMAIN-SUFFIX,metrics.macys.com
+DOMAIN-SUFFIX,metrics.meta.vn
 DOMAIN-SUFFIX,metrics.mlive.com
 DOMAIN-SUFFIX,metrics.mzstatic.com
 DOMAIN-SUFFIX,metrics.nba.com
@@ -1724,6 +1725,7 @@ DOMAIN-SUFFIX,stats.bizweb.vn
 DOMAIN-SUFFIX,stats.blogg.se
 DOMAIN-SUFFIX,stats.blogger.com
 DOMAIN-SUFFIX,stats.bradmax.com
+DOMAIN-SUFFIX,stats.brave.com
 DOMAIN-SUFFIX,stats.break.com
 DOMAIN-SUFFIX,stats.bunkr.ru
 DOMAIN-SUFFIX,stats.caseload.nl
@@ -1831,6 +1833,7 @@ DOMAIN-SUFFIX,stats.townnews.com
 DOMAIN-SUFFIX,stats.tuopo.es
 DOMAIN-SUFFIX,stats.uscreen.io
 DOMAIN-SUFFIX,stats.vegevu.fr
+DOMAIN-SUFFIX,stats.vidbolt.pro
 DOMAIN-SUFFIX,stats.vidyome.com
 DOMAIN-SUFFIX,stats.viqeo.tv
 DOMAIN-SUFFIX,stats.vodlix.com
@@ -1876,12 +1879,14 @@ DOMAIN-SUFFIX,track.adoptim.com
 DOMAIN-SUFFIX,track.adshay.vn
 DOMAIN-SUFFIX,track.adspire.io
 DOMAIN-SUFFIX,track.adxwork.com
+DOMAIN-SUFFIX,track.adzeb.com
 DOMAIN-SUFFIX,track.aieic.com
 DOMAIN-SUFFIX,track.aimroas.com
 DOMAIN-SUFFIX,track.amebame.com
 DOMAIN-SUFFIX,track.anchorfree.com
 DOMAIN-SUFFIX,track.aniview.com
 DOMAIN-SUFFIX,track.audtd.com
+DOMAIN-SUFFIX,track.bluexad.ai
 DOMAIN-SUFFIX,track.bomiv.com
 DOMAIN-SUFFIX,track.btk.io
 DOMAIN-SUFFIX,track.canva.com
@@ -2006,6 +2011,7 @@ DOMAIN-SUFFIX,tracking.markethero.io
 DOMAIN-SUFFIX,tracking.meta.vn
 DOMAIN-SUFFIX,tracking.miui.com
 DOMAIN-SUFFIX,tracking.noen.at
+DOMAIN-SUFFIX,tracking.novvy.ai
 DOMAIN-SUFFIX,tracking.nw.de
 DOMAIN-SUFFIX,tracking.olx-st.com
 DOMAIN-SUFFIX,tracking.oui.sncf

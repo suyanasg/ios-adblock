@@ -1,5 +1,5 @@
 #!name=去广告 · 纯规则版
-#!desc=只做域名层拦截，无 MITM、无需证书、不碰 App 数据。共 2141 条规则。
+#!desc=只做域名层拦截，无 MITM、无需证书、不碰 App 数据。共 2147 条规则。
 #!author=seagull
 #!category=Adblock
 
@@ -1617,6 +1617,7 @@ DOMAIN-SUFFIX,metrics.kgw.com,REJECT
 DOMAIN-SUFFIX,metrics.lhj.com,REJECT
 DOMAIN-SUFFIX,metrics.li,REJECT
 DOMAIN-SUFFIX,metrics.macys.com,REJECT
+DOMAIN-SUFFIX,metrics.meta.vn,REJECT
 DOMAIN-SUFFIX,metrics.mlive.com,REJECT
 DOMAIN-SUFFIX,metrics.mzstatic.com,REJECT
 DOMAIN-SUFFIX,metrics.nba.com,REJECT
@@ -1835,6 +1836,7 @@ DOMAIN-SUFFIX,stats.bizweb.vn,REJECT
 DOMAIN-SUFFIX,stats.blogg.se,REJECT
 DOMAIN-SUFFIX,stats.blogger.com,REJECT
 DOMAIN-SUFFIX,stats.bradmax.com,REJECT
+DOMAIN-SUFFIX,stats.brave.com,REJECT
 DOMAIN-SUFFIX,stats.break.com,REJECT
 DOMAIN-SUFFIX,stats.bunkr.ru,REJECT
 DOMAIN-SUFFIX,stats.caseload.nl,REJECT
@@ -1942,6 +1944,7 @@ DOMAIN-SUFFIX,stats.townnews.com,REJECT
 DOMAIN-SUFFIX,stats.tuopo.es,REJECT
 DOMAIN-SUFFIX,stats.uscreen.io,REJECT
 DOMAIN-SUFFIX,stats.vegevu.fr,REJECT
+DOMAIN-SUFFIX,stats.vidbolt.pro,REJECT
 DOMAIN-SUFFIX,stats.vidyome.com,REJECT
 DOMAIN-SUFFIX,stats.viqeo.tv,REJECT
 DOMAIN-SUFFIX,stats.vodlix.com,REJECT
@@ -1991,12 +1994,14 @@ DOMAIN-SUFFIX,track.adoptim.com,REJECT
 DOMAIN-SUFFIX,track.adshay.vn,REJECT
 DOMAIN-SUFFIX,track.adspire.io,REJECT
 DOMAIN-SUFFIX,track.adxwork.com,REJECT
+DOMAIN-SUFFIX,track.adzeb.com,REJECT
 DOMAIN-SUFFIX,track.aieic.com,REJECT
 DOMAIN-SUFFIX,track.aimroas.com,REJECT
 DOMAIN-SUFFIX,track.amebame.com,REJECT
 DOMAIN-SUFFIX,track.anchorfree.com,REJECT
 DOMAIN-SUFFIX,track.aniview.com,REJECT
 DOMAIN-SUFFIX,track.audtd.com,REJECT
+DOMAIN-SUFFIX,track.bluexad.ai,REJECT
 DOMAIN-SUFFIX,track.bomiv.com,REJECT
 DOMAIN-SUFFIX,track.btk.io,REJECT
 DOMAIN-SUFFIX,track.canva.com,REJECT
@@ -2121,6 +2126,7 @@ DOMAIN-SUFFIX,tracking.markethero.io,REJECT
 DOMAIN-SUFFIX,tracking.meta.vn,REJECT
 DOMAIN-SUFFIX,tracking.miui.com,REJECT
 DOMAIN-SUFFIX,tracking.noen.at,REJECT
+DOMAIN-SUFFIX,tracking.novvy.ai,REJECT
 DOMAIN-SUFFIX,tracking.nw.de,REJECT
 DOMAIN-SUFFIX,tracking.olx-st.com,REJECT
 DOMAIN-SUFFIX,tracking.oui.sncf,REJECT
