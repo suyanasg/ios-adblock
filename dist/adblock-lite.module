@@ -1,5 +1,5 @@
 #!name=去广告 · 纯规则版
-#!desc=只做域名层拦截，无 MITM、无需证书、不碰 App 数据。共 2147 条规则。
+#!desc=只做域名层拦截，无 MITM、无需证书、不碰 App 数据。共 2149 条规则。
 #!author=seagull
 #!category=Adblock
 
@@ -176,6 +176,7 @@ DOMAIN-SUFFIX,ad.filmweb.pl,REJECT
 DOMAIN-SUFFIX,ad.firestorage.jp,REJECT
 DOMAIN-SUFFIX,ad.flipboard.com,REJECT
 DOMAIN-SUFFIX,ad.floq.jp,REJECT
+DOMAIN-SUFFIX,ad.fo.net,REJECT
 DOMAIN-SUFFIX,ad.fuji-f.net,REJECT
 DOMAIN-SUFFIX,ad.funp.com,REJECT
 DOMAIN-SUFFIX,ad.gameley.com,REJECT
@@ -354,6 +355,7 @@ DOMAIN-SUFFIX,ad.planbplus.co.kr,REJECT
 DOMAIN-SUFFIX,ad.playground.ru,REJECT
 DOMAIN-SUFFIX,ad.plus,REJECT
 DOMAIN-SUFFIX,ad.popup.tbn.ru,REJECT
+DOMAIN-SUFFIX,ad.porkolt.com,REJECT
 DOMAIN-SUFFIX,ad.pphungary.hu,REJECT
 DOMAIN-SUFFIX,ad.pping.kr,REJECT
 DOMAIN-SUFFIX,ad.pr.ameba.jp,REJECT

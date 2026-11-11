@@ -1,5 +1,5 @@
 #!name=去广告 · 完整版 + 外链域名集
-#!desc=完整版 + DOMAIN-SET 外链，规则随小火箭「自动更新」刷新，无需重导模块。已内置 15 条护栏（推送/登录/证书域放行），避免外链误伤。规则 2147 条 + 外链 1 个 / MITM 18 域。
+#!desc=完整版 + DOMAIN-SET 外链，规则随小火箭「自动更新」刷新，无需重导模块。已内置 15 条护栏（推送/登录/证书域放行），避免外链误伤。规则 2149 条 + 外链 1 个 / MITM 18 域。
 #!author=seagull
 #!category=Adblock
 
@@ -193,6 +193,7 @@ DOMAIN-SUFFIX,ad.filmweb.pl,REJECT
 DOMAIN-SUFFIX,ad.firestorage.jp,REJECT
 DOMAIN-SUFFIX,ad.flipboard.com,REJECT
 DOMAIN-SUFFIX,ad.floq.jp,REJECT
+DOMAIN-SUFFIX,ad.fo.net,REJECT
 DOMAIN-SUFFIX,ad.fuji-f.net,REJECT
 DOMAIN-SUFFIX,ad.funp.com,REJECT
 DOMAIN-SUFFIX,ad.gameley.com,REJECT
@@ -371,6 +372,7 @@ DOMAIN-SUFFIX,ad.planbplus.co.kr,REJECT
 DOMAIN-SUFFIX,ad.playground.ru,REJECT
 DOMAIN-SUFFIX,ad.plus,REJECT
 DOMAIN-SUFFIX,ad.popup.tbn.ru,REJECT
+DOMAIN-SUFFIX,ad.porkolt.com,REJECT
 DOMAIN-SUFFIX,ad.pphungary.hu,REJECT
 DOMAIN-SUFFIX,ad.pping.kr,REJECT
 DOMAIN-SUFFIX,ad.pr.ameba.jp,REJECT
