@@ -4,7 +4,7 @@
   "auto_lists": [
     "auto.list"
   ],
-  "rules": 2149,
+  "rules": 2216,
   "guard_rules": 15,
   "guard_conflicts": [],
   "pruned_subdomains": 4,
@@ -29,10 +29,10 @@
     "https://anti-ad.net/domains.txt"
   ],
   "sizes": {
-    "adblock-lite.module": 79607,
-    "adblock-pro.module": 81528,
-    "adblock-pro-plus.module": 82251,
-    "adblock.list": 64452,
+    "adblock-lite.module": 82132,
+    "adblock-pro.module": 84053,
+    "adblock-pro-plus.module": 84776,
+    "adblock.list": 66508,
     "adclean.js": 7982,
     "splash.js": 7857
   }
