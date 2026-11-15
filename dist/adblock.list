@@ -1,5 +1,5 @@
 # adblock.list — Shadowrocket / Surge RULE-SET
-# 条数: 2216
+# 条数: 2218
 DOMAIN-SUFFIX,360yield.com
 DOMAIN-SUFFIX,a-ads.com
 DOMAIN-SUFFIX,aa-metrics.beauty.hotpepper.jp
@@ -1582,6 +1582,7 @@ DOMAIN-SUFFIX,inmobi.info
 DOMAIN-SUFFIX,inmobi.net
 DOMAIN-SUFFIX,inmobi.us
 DOMAIN-SUFFIX,ironsource.mobi
+DOMAIN-SUFFIX,ironsource.net
 DOMAIN-SUFFIX,ironsrc.com
 DOMAIN-SUFFIX,irs01.com
 DOMAIN-SUFFIX,irs01.net
@@ -1755,6 +1756,7 @@ DOMAIN-SUFFIX,stat.cncenter.cz
 DOMAIN-SUFFIX,stat.dealtime.com
 DOMAIN-SUFFIX,stat.dombo.si
 DOMAIN-SUFFIX,stat.dyna.ultraweb.hu
+DOMAIN-SUFFIX,stat.email
 DOMAIN-SUFFIX,stat.eol.cn
 DOMAIN-SUFFIX,stat.fdc.net.cn
 DOMAIN-SUFFIX,stat.fengniao.com

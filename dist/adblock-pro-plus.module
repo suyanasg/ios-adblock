@@ -1,5 +1,5 @@
 #!name=去广告 · 完整版 + 外链域名集
-#!desc=完整版 + DOMAIN-SET 外链，规则随小火箭「自动更新」刷新，无需重导模块。已内置 15 条护栏（推送/登录/证书域放行），避免外链误伤。规则 2216 条 + 外链 1 个 / MITM 18 域。
+#!desc=完整版 + DOMAIN-SET 外链，规则随小火箭「自动更新」刷新，无需重导模块。已内置 15 条护栏（推送/登录/证书域放行），避免外链误伤。规则 2218 条 + 外链 1 个 / MITM 18 域。
 #!author=seagull
 #!category=Adblock
 
@@ -1603,6 +1603,7 @@ DOMAIN-SUFFIX,inmobi.info,REJECT
 DOMAIN-SUFFIX,inmobi.net,REJECT
 DOMAIN-SUFFIX,inmobi.us,REJECT
 DOMAIN-SUFFIX,ironsource.mobi,REJECT
+DOMAIN-SUFFIX,ironsource.net,REJECT
 DOMAIN-SUFFIX,ironsrc.com,REJECT
 DOMAIN-SUFFIX,irs01.com,REJECT
 DOMAIN-SUFFIX,irs01.net,REJECT
@@ -1776,6 +1777,7 @@ DOMAIN-SUFFIX,stat.cncenter.cz,REJECT
 DOMAIN-SUFFIX,stat.dealtime.com,REJECT
 DOMAIN-SUFFIX,stat.dombo.si,REJECT
 DOMAIN-SUFFIX,stat.dyna.ultraweb.hu,REJECT
+DOMAIN-SUFFIX,stat.email,REJECT
 DOMAIN-SUFFIX,stat.eol.cn,REJECT
 DOMAIN-SUFFIX,stat.fdc.net.cn,REJECT
 DOMAIN-SUFFIX,stat.fengniao.com,REJECT

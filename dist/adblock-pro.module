@@ -1,5 +1,5 @@
 #!name=去广告 · 完整版
-#!desc=规则拦截 + 开屏接口 reject + JSON 广告清洗。需开启 HTTPS 解密并安装证书。规则 2216 条 / MITM 18 域。
+#!desc=规则拦截 + 开屏接口 reject + JSON 广告清洗。需开启 HTTPS 解密并安装证书。规则 2218 条 / MITM 18 域。
 #!author=seagull
 #!category=Adblock
 
@@ -1586,6 +1586,7 @@ DOMAIN-SUFFIX,inmobi.info,REJECT
 DOMAIN-SUFFIX,inmobi.net,REJECT
 DOMAIN-SUFFIX,inmobi.us,REJECT
 DOMAIN-SUFFIX,ironsource.mobi,REJECT
+DOMAIN-SUFFIX,ironsource.net,REJECT
 DOMAIN-SUFFIX,ironsrc.com,REJECT
 DOMAIN-SUFFIX,irs01.com,REJECT
 DOMAIN-SUFFIX,irs01.net,REJECT
@@ -1759,6 +1760,7 @@ DOMAIN-SUFFIX,stat.cncenter.cz,REJECT
 DOMAIN-SUFFIX,stat.dealtime.com,REJECT
 DOMAIN-SUFFIX,stat.dombo.si,REJECT
 DOMAIN-SUFFIX,stat.dyna.ultraweb.hu,REJECT
+DOMAIN-SUFFIX,stat.email,REJECT
 DOMAIN-SUFFIX,stat.eol.cn,REJECT
 DOMAIN-SUFFIX,stat.fdc.net.cn,REJECT
 DOMAIN-SUFFIX,stat.fengniao.com,REJECT
