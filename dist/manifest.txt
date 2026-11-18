@@ -4,10 +4,10 @@
   "auto_lists": [
     "auto.list"
   ],
-  "rules": 2218,
+  "rules": 2313,
   "guard_rules": 15,
   "guard_conflicts": [],
-  "pruned_subdomains": 4,
+  "pruned_subdomains": 11,
   "rewrite_rules": 13,
   "mitm_mode": "lean",
   "mitm_hosts": 18,
@@ -29,10 +29,10 @@
     "https://anti-ad.net/domains.txt"
   ],
   "sizes": {
-    "adblock-lite.module": 82200,
-    "adblock-pro.module": 84121,
-    "adblock-pro-plus.module": 84844,
-    "adblock.list": 66562,
+    "adblock-lite.module": 85999,
+    "adblock-pro.module": 87920,
+    "adblock-pro-plus.module": 88643,
+    "adblock.list": 69696,
     "adclean.js": 7982,
     "splash.js": 7857
   }
