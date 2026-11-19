@@ -1,5 +1,5 @@
 #!name=去广告 · 完整版
-#!desc=规则拦截 + 开屏接口 reject + JSON 广告清洗。需开启 HTTPS 解密并安装证书。规则 2313 条 / MITM 18 域。
+#!desc=规则拦截 + 开屏接口 reject + JSON 广告清洗。需开启 HTTPS 解密并安装证书。规则 2314 条 / MITM 18 域。
 #!author=seagull
 #!category=Adblock
 
@@ -15,6 +15,7 @@ DOMAIN-SUFFIX,ad-api.cnblogs.com,REJECT
 DOMAIN-SUFFIX,ad-balancer.at,REJECT
 DOMAIN-SUFFIX,ad-balancer.net,REJECT
 DOMAIN-SUFFIX,ad-delivery.net,REJECT
+DOMAIN-SUFFIX,ad-maven.com,REJECT
 DOMAIN-SUFFIX,ad-pay.de,REJECT
 DOMAIN-SUFFIX,ad-rotator.com,REJECT
 DOMAIN-SUFFIX,ad-score.com,REJECT
