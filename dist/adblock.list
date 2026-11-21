@@ -1,5 +1,5 @@
 # adblock.list — Shadowrocket / Surge RULE-SET
-# 条数: 2316
+# 条数: 2317
 DOMAIN-SUFFIX,360yield.com
 DOMAIN-SUFFIX,a-ads.com
 DOMAIN-SUFFIX,aa-metrics.beauty.hotpepper.jp
@@ -328,6 +328,7 @@ DOMAIN-SUFFIX,ad.ntv.co.jp
 DOMAIN-SUFFIX,ad.nwt.cz
 DOMAIN-SUFFIX,ad.obuy.tw
 DOMAIN-SUFFIX,ad.ohmynews.com
+DOMAIN-SUFFIX,ad.onad.eu
 DOMAIN-SUFFIX,ad.orange-park.jp
 DOMAIN-SUFFIX,ad.orbitel.bg
 DOMAIN-SUFFIX,ad.org.vn

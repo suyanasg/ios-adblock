@@ -1,5 +1,5 @@
 #!name=去广告 · 完整版 + 外链域名集
-#!desc=完整版 + DOMAIN-SET 外链，规则随小火箭「自动更新」刷新，无需重导模块。已内置 15 条护栏（推送/登录/证书域放行），避免外链误伤。规则 2316 条 + 外链 1 个 / MITM 18 域。
+#!desc=完整版 + DOMAIN-SET 外链，规则随小火箭「自动更新」刷新，无需重导模块。已内置 15 条护栏（推送/登录/证书域放行），避免外链误伤。规则 2317 条 + 外链 1 个 / MITM 18 域。
 #!author=seagull
 #!category=Adblock
 
@@ -349,6 +349,7 @@ DOMAIN-SUFFIX,ad.ntv.co.jp,REJECT
 DOMAIN-SUFFIX,ad.nwt.cz,REJECT
 DOMAIN-SUFFIX,ad.obuy.tw,REJECT
 DOMAIN-SUFFIX,ad.ohmynews.com,REJECT
+DOMAIN-SUFFIX,ad.onad.eu,REJECT
 DOMAIN-SUFFIX,ad.orange-park.jp,REJECT
 DOMAIN-SUFFIX,ad.orbitel.bg,REJECT
 DOMAIN-SUFFIX,ad.org.vn,REJECT
