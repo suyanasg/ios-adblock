@@ -1,5 +1,5 @@
 #!name=去广告 · 纯规则版
-#!desc=只做域名层拦截，无 MITM、无需证书、不碰 App 数据。共 2317 条规则。
+#!desc=只做域名层拦截，无 MITM、无需证书、不碰 App 数据。共 2320 条规则。
 #!author=seagull
 #!category=Adblock
 
@@ -45,6 +45,7 @@ DOMAIN-SUFFIX,ad.admamba.com,REJECT
 DOMAIN-SUFFIX,ad.admine.co.kr,REJECT
 DOMAIN-SUFFIX,ad.admitad.com,REJECT
 DOMAIN-SUFFIX,ad.adnmore.co.kr,REJECT
+DOMAIN-SUFFIX,ad.adohana.com,REJECT
 DOMAIN-SUFFIX,ad.adorika.com,REJECT
 DOMAIN-SUFFIX,ad.adpon.jp,REJECT
 DOMAIN-SUFFIX,ad.adschemist.com,REJECT
@@ -146,6 +147,7 @@ DOMAIN-SUFFIX,ad.dt.co.kr,REJECT
 DOMAIN-SUFFIX,ad.duga.jp,REJECT
 DOMAIN-SUFFIX,ad.duoduo.link,REJECT
 DOMAIN-SUFFIX,ad.dzwindows.com,REJECT
+DOMAIN-SUFFIX,ad.e-kolay.net,REJECT
 DOMAIN-SUFFIX,ad.e-sport.com,REJECT
 DOMAIN-SUFFIX,ad.e.kuaishou.com,REJECT
 DOMAIN-SUFFIX,ad.edaily.co.kr,REJECT
@@ -572,6 +574,7 @@ DOMAIN-SUFFIX,ads.admatrix.vn,REJECT
 DOMAIN-SUFFIX,ads.administrator.de,REJECT
 DOMAIN-SUFFIX,ads.admodus.com,REJECT
 DOMAIN-SUFFIX,ads.adnet.am,REJECT
+DOMAIN-SUFFIX,ads.adohana.com,REJECT
 DOMAIN-SUFFIX,ads.adone.com,REJECT
 DOMAIN-SUFFIX,ads.adonion.com,REJECT
 DOMAIN-SUFFIX,ads.adpulse.com,REJECT
