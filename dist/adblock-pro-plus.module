@@ -1,5 +1,5 @@
 #!name=去广告 · 完整版 + 外链域名集
-#!desc=完整版 + DOMAIN-SET 外链，规则随小火箭「自动更新」刷新，无需重导模块。已内置 15 条护栏（推送/登录/证书域放行），避免外链误伤。规则 2320 条 + 外链 1 个 / MITM 18 域。
+#!desc=完整版 + DOMAIN-SET 外链，规则随小火箭「自动更新」刷新，无需重导模块。已内置 15 条护栏（推送/登录/证书域放行），避免外链误伤。规则 2322 条 + 外链 1 个 / MITM 18 域。
 #!author=seagull
 #!category=Adblock
 
@@ -1458,6 +1458,7 @@ DOMAIN-SUFFIX,analytics.ceneo.pl,REJECT
 DOMAIN-SUFFIX,analytics.cmn.com,REJECT
 DOMAIN-SUFFIX,analytics.cn.ru,REJECT
 DOMAIN-SUFFIX,analytics.crea.ca,REJECT
+DOMAIN-SUFFIX,analytics.did.kr,REJECT
 DOMAIN-SUFFIX,analytics.dpd.com,REJECT
 DOMAIN-SUFFIX,analytics.eirib.ir,REJECT
 DOMAIN-SUFFIX,analytics.emol.com,REJECT
@@ -2198,6 +2199,7 @@ DOMAIN-SUFFIX,track.cordial.io,REJECT
 DOMAIN-SUFFIX,track.cpatool.net,REJECT
 DOMAIN-SUFFIX,track.customer.io,REJECT
 DOMAIN-SUFFIX,track.cux.io,REJECT
+DOMAIN-SUFFIX,track.did.kr,REJECT
 DOMAIN-SUFFIX,track.dorfzeit.de,REJECT
 DOMAIN-SUFFIX,track.dws.com,REJECT
 DOMAIN-SUFFIX,track.eadv.it,REJECT
